@@ -81,6 +81,9 @@ d3.json('/data/taiwan-tea.json').then(data => {
     .attr('pointer-events', 'all')
     .on('click', clicked)
 
+  parent.append('title')
+    .text('Return')
+
   function clicked (event, p) {
     parent.datum(p.parent || partition)
 
