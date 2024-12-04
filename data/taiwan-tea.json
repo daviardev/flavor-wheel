@@ -1,0 +1,591 @@
+{
+    "children": [
+        {
+            "name": "Aroma",
+            "description": "Aroma testing is a sensory exploration designed to identify and classify the different odors perceived in a sample, such as food, beverages or fragrances. This analysis focuses on recognizing top notes, subcategories and specific attributes that make up the aroma profile, helping to improve sensory appreciation and product characterization.",
+            "color": "#d6ffd6",
+            "children": [
+                {
+                    "name": "Vegetal",
+                    "description": "Fresh, green and herbal aromas that evoke the scent of living vegetation, freshly cut leaves or even fresh vegetables. These scents convey a sense of naturalness and freshness.",
+                    "color": "#e0ebaf",
+                    "children": [
+                        {
+                            "name": "Grassy",
+                            "color": "#8cb950",
+                            "description": "Aromas reminiscent of fresh grass fields, wild vegetation or herbaceous plants. It is a fresh olfactory profile, sometimes with a wet touch, that connects with nature.",
+                            "children": [
+                                {
+                                    "name": "Grassy",
+                                    "color": "#bed7a0",
+                                    "description": "A fresh, green, damp scent reminiscent of freshly cut grass or dewy morning blades of grass. It is light and revitalizing, with a natural and lively character."
+                                },
+                                {
+                                    "name": "Mesona",
+                                    "color": "#bed7a0",
+                                    "description": "A deep herbal and earthy aroma, characteristic of the Mesona plant (Mesona chinensis), also known as “jelly herb”. It has an herbal, slightly sweet profile with a woody or earthy touch that evokes a traditional and medicinal character."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Beans",
+                            "color": "#8cb950",
+                            "description": "Aromas reminiscent of legumes such as beans, with warm, earthy and slightly sweet notes. This aromatic profile is comforting and evokes natural and traditional ingredients used in beverages, desserts and savory dishes.",
+                            "children": [
+                                {
+                                    "name": "Mung bean",
+                                    "color": "#bed7a0",
+                                    "description": "A mild, sweet and creamy aroma reminiscent of cooked mung beans or desserts made with this legume. It has an earthy undertone and a delicate character that makes it very popular in Asian sweets and beverages such as milk tea desserts."
+                                },
+                                {
+                                    "name": "Soybean",
+                                    "color": "#bed7a0",
+                                    "description": "A more robust and earthy aroma, reminiscent of cooked soybeans, soy milk or even fresh tofu. Its olfactory profile is warm, sometimes slightly toasted, with a touch of natural sweetness."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Vegetables",
+                            "color": "#8cb950",
+                            "description": "Fresh, green and earthy aromas that evoke the essence of common vegetables.",
+                            "children": [
+                                {
+                                    "name": "Baby Corn",
+                                    "color": "#bed7a0",
+                                    "description": "A soft, sweet and vegetal aroma reminiscent of the tenderness of fresh baby corn. It has a delicate profile, with notes of light sweetness and a vegetal undertone that evokes freshness and youth."
+                                },
+                                {
+                                    "name": "Mushroom",
+                                    "color": "#bed7a0",
+                                    "description": "An earthy, umami and slightly dry aroma that evokes the richness and depth of fresh or dried mushrooms. This aromatic profile is warm and robust, adding a sense of connection to the earth."
+                                },
+                                {
+                                    "name": "Cucumber",
+                                    "color": "#bed7a0",
+                                    "description": "Watery and fresh, ideal for light blends."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Herbs",
+                            "color": "#8cb950",
+                            "description": "Natural and comforting aromas that evoke plants used for relaxation or stimulation.",
+                            "children": [
+                                {
+                                    "name": "Chachomile",
+                                    "color": "#bed7a0",
+                                    "description": "Soft and floral, with a sweet and warm character."
+                                },
+                                {
+                                    "name": "Mint",
+                                    "color": "#bed7a0",
+                                    "description": "Fresh and vibrant, with a mentholated and stimulating profile."
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Flowery",
+                    "description": "Floral aromas that range from delicate and light notes to intense and intoxicating profiles. These fragrances evoke freshness, femininity, and elegance, with a wide variety of flowers that symbolize different levels of intensity and olfactory complexity.",
+                    "color": "#fff4f9",
+                    "children": [
+                        {
+                            "name": "Light",
+                            "description": "Delicate and soft aromas reminiscent of ethereal flowers, with a fresh and slightly sweet profile. These notes are perceived as elegant, refined and calm, ideal to evoke serenity and lightness.",
+                            "color": "#fff4f9",
+                            "children": [
+                                {
+                                    "name": "Orchid",
+                                    "color": "#f5dcdc",
+                                    "description": "A soft and slightly sweet scent that evokes exoticism and elegance. Orchid has a delicate floral profile with a fresh and natural undertone."
+                                },
+                                {
+                                    "name": "Magnolia",
+                                    "color": "#f5dcdc",
+                                    "description": "A creamy and fresh scent with a clean floral touch. Evokes the purity and softness of magnolia petals."
+                                },
+                                {
+                                    "name": "Osmanthus",
+                                    "color": "#f5dcdc",
+                                    "description": "A sweet and fruity fragrance with apricot nuances. It offers a unique floral profile, light but enveloping."
+                                },
+                                {
+                                    "name": "Jasmine",
+                                    "color": "#f5dcdc",
+                                    "description": "An iconic floral scent, sweet and relaxing, evoking sensuality and freshness. Its profile is classic and very versatile."
+                                },
+                                {
+                                    "name": "Logan blossom",
+                                    "color": "#f5dcdc",
+                                    "description": "A subtle, sweet scent with an herbal touch. Longan flower has a light and exotic profile."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Strong",
+                            "description": "Robust, intense and deeply enveloping floral aromas. These fragrances are more complex, with a vibrant character and a striking presence.",
+                            "color": "#fff4f9",
+                            "children": [
+                                {
+                                    "name": "Gardenia",
+                                    "color": "#f5dcdc",
+                                    "description": "A sweet, creamy and intoxicating scent that evokes sophistication. Gardenia is known for its powerful and rich floral profile."
+                                },
+                                {
+                                    "name": "White ginger lily",
+                                    "color": "#f5dcdc",
+                                    "description": "A floral and spicy aroma, with fresh and warm nuances at the same time. It is exotic and captivating, with a distinctive character."
+                                },
+                                {
+                                    "name": "Rose",
+                                    "color": "#f5dcdc",
+                                    "description": "Deep, rich and classic floral scent. It is a fragrance that evokes sophistication, romance and elegance."
+                                },
+                                {
+                                    "name": "Betel blossom",
+                                    "color": "#f5dcdc",
+                                    "description": "An intense fragrance with spicy and earthy nuances. Betel flower has an intriguing and distinctive aroma."
+                                },
+                                {
+                                    "name": "Orange blossom",
+                                    "color": "#f5dcdc",
+                                    "description": "It is a delicate, sweet and citrusy aroma that comes from orange blossoms. It is highly appreciated in perfumery, aromatic teas and food because of its fresh, light and at the same time sophisticated character. This scent evokes images of sunny gardens and Mediterranean landscapes."
+                                },
+                                {
+                                    "name": "Pomelo blossom",
+                                    "color": "#f5dcdc",
+                                    "description": "A vibrant and fresh scent with a citrus touch. Its strong floral profile has a refreshing and fruity undertone."
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Sweet",
+                    "description": "Aromas related to different types of sweetness, evoking tastes and smells that are pleasant, comforting and highly palatable.",
+                    "color": "#ff7720",
+                    "children": [
+                        {
+                            "name": "Sugary",
+                            "description": "Aromas related to different types of sweetness, evoking tastes and smells that are pleasant, comforting and highly palatable. These subcategories represent variations in the type of sweetness, from simple to complex.",
+                            "color": "#ff7720",
+                            "children": [
+                                {
+                                    "name": "Sugar",
+                                    "color": "#f5e6a5",
+                                    "description": "Simple and pure aroma, similar to refined or powdered sugar.It is a clean sweetness, light, and almost “neutral” in terms of complexity.",
+                                    "size": 1
+                                },
+                                {
+                                    "name": "Brown sugar",
+                                    "color": "#f5e6a5",
+                                    "description": "An intense and rich aroma arising from the caramelization of the sugar. It is more toasty and has notes of nuts, butter and burnt sweetness."
+                                },
+                                {
+                                    "name": "Caramel",
+                                    "color": "#f5e6a5",
+                                    "description": "An intense and rich aroma arising from the caramelization of the sugar. It is more toasty and has notes of nuts, butter and burnt sweetness."
+                                },
+                                {
+                                    "name": "Candied melon",
+                                    "color": "#f5e6a5",
+                                    "description": "A fresh and fruity aroma that combines the sweetness of melon with a touch of crystallized sugar. It is light, refreshing and exotic."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Milky",
+                            "description": "Represents aromas related to dairy products. There aromas smooth, creamy and comforting, with a very specific character that can evoke warmth and contentment.",
+                            "color": "#ff7720",
+                            "children": [
+                                {
+                                    "name": "Butter",
+                                    "color": "#f5e6a5",
+                                    "description": "A rich, fatty, warm aroma that evokes melted butter or freshly made toast. It is has robust and satisfacying character."
+                                },
+                                {
+                                    "name": "Milk",
+                                    "color": "#f5e6a5",
+                                    "description": "A smooth, fresh and creamy aroma reminiscent of freshly poured milk. It is more delicate than butter, but equally peasant."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Honey",
+                            "description": "It is related to the natural sweetness that comes from honey",
+                            "color": "#ff7720",
+                            "children": [
+                                {
+                                    "name": "Honey",
+                                    "color": "#f5e6a5",
+                                    "description": "A sweet and floral scent with warm touches. Often has notes of beeswax and flowers, making it rich and multifaceted."
+                                },
+                                {
+                                    "name": "Beauty tea",
+                                    "color": "#f5e6a5",
+                                    "description": "A more sophisticated and softer variant of the honey scent, often blended with herbal or floral notes. It is has a light, fresh character that evokes elegance."
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Fruity",
+                    "description": "These scents bring freshness, sweetness and vitality, and are highly versatile.The fruity notes are usually light, vibrant and pleasant, providing a sense of naturalness.",
+                    "color": "#ea5506",
+                    "children": [
+                        {
+                            "name": "Fresh",
+                            "description": "It represents fruits in their most natural and vibrant state.",
+                            "color": "#ea5506",
+                            "children": [
+                                {
+                                    "name": "Pear",
+                                    "color": "#e19141",
+                                    "description": "A sweet and delicate aroma, with a watery touch that makes it refreshing and light."
+                                },
+                                {
+                                    "name": "Guava",
+                                    "color": "#e19141",
+                                    "description": "Tropical and distinctive, it combines sweetness with a unique acidic nuance."
+                                },
+                                {
+                                    "name": "Green apple",
+                                    "color": "#e19141",
+                                    "description": "Refreshing and acidic, with a crisp character that evokes youth and energy."
+                                },
+                                {
+                                    "name": "Lemon",
+                                    "color": "#e19141",
+                                    "description": "Citrus, bright and acidic, a classic symbol of freshness."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Ripe",
+                            "description": "They come from fruits at their peak of ripeness, offering sweet and richer profiles. These notes are warm, soft and evoke a sense of abundance.",
+                            "color": "#ea5506",
+                            "children": [
+                                {
+                                    "name": "Peach",
+                                    "color": "#e19141",
+                                    "description": "Soft and floral, with a juicy sweetness that is seductive."
+                                },
+                                {
+                                    "name": "Mango",
+                                    "color": "#e19141",
+                                    "description": "Exotic and tropical, with an intense sweetness and a creamy touch."
+                                },
+                                {
+                                    "name": "Lychee",
+                                    "color": "#e19141",
+                                    "description": "A combination of sweetness and floral notes that are fresh and unique."
+                                },
+                                {
+                                    "name": "Orange",
+                                    "color": "#e19141",
+                                    "description": "Citrusy, juicy and warm, with a balance between sweetness and acidity."
+                                },
+                                {
+                                    "name": "Pineapple",
+                                    "color": "#e19141",
+                                    "description": "Tropical and refreshing, with a vibrant profile that blends sweetness and acidity."
+                                },
+                                {
+                                    "name": "Bergamot",
+                                    "color": "#e19141",
+                                    "description": "A sophisticated floral citrus fruit, known for its use in fragrances and teas."
+                                },
+                                {
+                                    "name": "Melon",
+                                    "color": "#e19141",
+                                    "description": "Sweet and watery, it provides a light and refreshing sensation."
+                                },
+                                {
+                                    "name": "Banana",
+                                    "color": "#e19141",
+                                    "description": "Soft and creamy, with a warm sweetness that evokes comfort."
+                                },
+                                {
+                                    "name": "Plum",
+                                    "color": "#e19141",
+                                    "description": "Sweet with a touch of acid, perfect for complex aromatic profiles."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Dried",
+                            "description": "Aromas of fruits that have been dried, which intensifies their sweetness and gives them a deeper and warmer character. These notes are ideal for creating more complex and robust aromatic profiles.",
+                            "color": "#ea5506",
+                            "children": [
+                                {
+                                    "name": "Dried longan",
+                                    "color": "#e19141",
+                                    "description": "Sweet and woody, with warm nuances reminiscent of honey."
+                                },
+                                {
+                                    "name": "Dried plum",
+                                    "color": "#e19141",
+                                    "description": "A balance between sweetness and acidity, with depth and caramelized nuances."
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Roasted",
+                    "description": "It focuses on aromas associated with foods and materials that have been cooked or heated to release rich, warm and complex notes. These aromas evoke warmth, depth and often have an earthy or smoky touch.",
+                    "color": "#d9a62e",
+                    "children": [
+                        {
+                            "name": "Nuts Grains",
+                            "description": "It includes notes of nuts and toasted grains that offer a combination of sweetness, earthiness and richness.",
+                            "color": "#a58246",
+                            "children": [
+                                {
+                                    "name": "Peanut",
+                                    "color": "#d2b987",
+                                    "description": "Warm and oily aroma, with a mild sweetness and a slightly salty character."
+                                },
+                                {
+                                    "name": "Sweet potato",
+                                    "color": "#d2b987",
+                                    "description": "Sweet and earthy, with a comforting, slightly caramelized profile."
+                                },
+                                {
+                                    "name": "Rice",
+                                    "color": "#d2b987",
+                                    "description": "Subtle and toasty, evoking warmth and simplicity."
+                                },
+                                {
+                                    "name": "Hazelnut",
+                                    "color": "#d2b987",
+                                    "description": "Sweet, rich and creamy, with a toasted and smooth touch."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Backed",
+                            "description": "Aromas that evoke carefully baked and crafted products, with a sweet and warm touch.",
+                            "color": "#a58246",
+                            "children": [
+                                {
+                                    "name": "Brown rice",
+                                    "color": "#d2b987",
+                                    "description": "Deep and earthy, with a soft toasty sweetness."
+                                },
+                                {
+                                    "name": "Cookie",
+                                    "color": "#d2b987",
+                                    "description": "Sweet and buttery, with notes of caramelized sugar."
+                                },
+                                {
+                                    "name": "Roasted barley",
+                                    "color": "#d2b987",
+                                    "description": "Warm and malty, with a touch of roasted bitterness."
+                                },
+                                {
+                                    "name": "Chocolate",
+                                    "color": "#d2b987",
+                                    "description": "Rich and sweet, with a dark and slightly bitter profile."
+                                },
+                                {
+                                    "name": "Coffe",
+                                    "color": "#d2b987",
+                                    "description": "Intense and aromatic, with a mix of bitterness and complex sweetness."
+                                },
+                                {
+                                    "name": "Roasted chetsnut",
+                                    "color": "#d2b987",
+                                    "description": "Sweet, with a warm, earthy and comforting aroma."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Smoked",
+                            "description": "Aromas that evoke products cooked by fire or exposed to smoke, offering a strong and robust profile.",
+                            "color": "#a58246",
+                            "children": [
+                                {
+                                    "name": "Smoke plum",
+                                    "color": "#d2b987",
+                                    "description": "Sweet and smoky, with a balance between fruit and charcoal character."
+                                },
+                                {
+                                    "name": "Charcoal",
+                                    "color": "#d2b987",
+                                    "description": "Intense and deep, with a dry and smoky aroma that evokes fire and burnt wood."
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Special",
+                    "description": "It groups unique and distinctive aromas that do not easily fit into common categories. These scents are characterized by their uniqueness and their ability to evoke specific places, landscapes or rare sensory experiences.",
+                    "color": "#9ba88d",
+                    "children": [
+                        {
+                            "name": "Earthy",
+                            "description": "It focuses on notes associated with earth, plants and wood, evoking a connection with nature.",
+                            "color": "#9ba88d",
+                            "children": [
+                                {
+                                    "name": "Tabacco",
+                                    "color": "#9ba88d",
+                                    "description": "A deep, warm and complex aroma with sweet and woody notes, often associated with sophistication."
+                                },
+                                {
+                                    "name": "Pine",
+                                    "color": "#9ba88d",
+                                    "description": "Fresh, resinous and invigorating, evoking dense forests and clean air."
+                                },
+                                {
+                                    "name": "Woody",
+                                    "color": "#9ba88d",
+                                    "description": "Rich, earthy and robust, with hints of dry or freshly cut wood."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Marine",
+                            "description": "It includes fresh and salty notes that evoke the sea breeze and the coastal environment.",
+                            "color": "#9ba88d",
+                            "children": [
+                                {
+                                    "name": "Seawwed",
+                                    "color": "#9ba88d",
+                                    "description": "A salty and earthy aroma with vegetal nuances, evoking beaches and salty waters."
+                                },
+                                {
+                                    "name": "Sea fish",
+                                    "color": "#9ba88d",
+                                    "description": "A fresh and penetrating aroma with a characteristic profile of seafood and salt water."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Taste",
+            "description": "Taste testing is a sensory evaluation focused on identifying and classifying the flavors present in a sample, such as food or beverages. During this test, characteristics such as sweetness, acidity, bitterness, saltiness and umami are analyzed, as well as their combinations and persistence on the palate, with the objective of understanding and describing the taste profile of the product.",
+            "color": "#384e36",
+            "completed": false,
+            "children": [
+                {
+                    "name": "Basic",
+                    "description": "The basic taste evaluation focuses on identifying the five fundamental tastes: sweet, salty, sour, bitter and umami. This test analyzes the intensity, balance and presence of these flavors in the sample, providing key information about their taste profile and their impact on the palate.",
+                    "color": "#384e36",
+                    "sourness": {
+                        "calification": 0,
+                        "buttons": [
+                            { "value": 1, "size": "Small" },
+                            { "value": 2, "size": "slightly larger" },
+                            { "value": 3, "size": "normal" },
+                            { "value": 4, "size": "Bigger" },
+                            { "value": 5, "size": "The biggest" }
+                        ]
+                    },
+                    "saltiness": {
+                        "calification": 0,
+                        "buttons": [
+                            { "value": 1, "size": "Small" },
+                            { "value": 2, "size": "slightly larger" },
+                            { "value": 3, "size": "normal" },
+                            { "value": 4, "size": "Bigger" },
+                            { "value": 5, "size": "The biggest" }
+                        ]
+                    },
+                    "sweetness": {
+                        "calification": 0,
+                        "buttons": [
+                            { "value": 1, "size": "Small" },
+                            { "value": 2, "size": "slightly larger" },
+                            { "value": 3, "size": "normal" },
+                            { "value": 4, "size": "Bigger" },
+                            { "value": 5, "size": "The biggest" }
+                        ]
+                    },
+                    "bitterness": {
+                        "calification": 0,
+                        "buttons": [
+                            { "value": 1, "size": "Small" },
+                            { "value": 2, "size": "slightly larger" },
+                            { "value": 3, "size": "normal" },
+                            { "value": 4, "size": "Bigger" },
+                            { "value": 5, "size": "The biggest" }
+                        ]
+                    },
+                    "umami": {
+                        "calification": 0,
+                        "buttons": [
+                            { "value": 1, "size": "Small" },
+                            { "value": 2, "size": "slightly larger" },
+                            { "value": 3, "size": "normal" },
+                            { "value": 4, "size": "Bigger" },
+                            { "value": 5, "size": "The biggest" }
+                        ]
+                    }
+                },
+                {
+                    "name": "Mouthfeel",
+                    "description": "Mouthfeel evaluation analyzes the physical properties of the sample, such as texture, viscosity, astringency, creaminess, and effervescence. This analysis complements the perception of flavor by considering how the product feels on the palate, which influences the overall sensory experience.",
+                    "color": "#384e36",
+                    "aftertaste": {
+                        "calification": 0,
+                        "buttons": [
+                            { "value": 1, "size": "Small" },
+                            { "value": 2, "size": "slightly larger" },
+                            { "value": 3, "size": "normal" },
+                            { "value": 4, "size": "Bigger" },
+                            { "value": 5, "size": "The biggest" }
+                        ]
+                    },
+                    "fullness": {
+                        "calification": 0,
+                        "buttons": [
+                            { "value": 1, "size": "Small" },
+                            { "value": 2, "size": "slightly larger" },
+                            { "value": 3, "size": "normal" },
+                            { "value": 4, "size": "Bigger" },
+                            { "value": 5, "size": "The biggest" }
+                        ]
+                    },
+                    "smoothness": {
+                        "calification": 0,
+                        "buttons": [
+                            { "value": 1, "size": "Small" },
+                            { "value": 2, "size": "slightly larger" },
+                            { "value": 3, "size": "normal" },
+                            { "value": 4, "size": "Bigger" },
+                            { "value": 5, "size": "The biggest" }
+                        ]
+                    },
+                    "fineness": {
+                        "calification": 0,
+                        "buttons": [
+                            { "value": 1, "size": "Small" },
+                            { "value": 2, "size": "slightly larger" },
+                            { "value": 3, "size": "normal" },
+                            { "value": 4, "size": "Bigger" },
+                            { "value": 5, "size": "The biggest" }
+                        ]
+                    },
+                    "purity": {
+                        "calification": 0,
+                        "buttons": [
+                            { "value": 1, "size": "Small" },
+                            { "value": 2, "size": "slightly larger" },
+                            { "value": 3, "size": "normal" },
+                            { "value": 4, "size": "Bigger" },
+                            { "value": 5, "size": "The biggest" }
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+}
