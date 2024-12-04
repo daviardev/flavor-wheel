@@ -42,7 +42,6 @@ d3.json('/data/taiwan-tea.json').then(data => {
       dimentions.width,
       dimentions.height
     ])
-    .style('font', '14px sans-serif')
 
   const g = svg.append('g')
 
