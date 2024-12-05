@@ -144,15 +144,6 @@ d3.json('/data/taiwan-tea.json').then(data => {
       selectedElements.add(fullPath)
       d3.select(this).attr('fill-opacity', 1)
     }
-    updateSelectionVisuals()
-  }
-
-  function updateSelectionVisuals () {
-    path.attr('fill-opacity', d => {
-      if (d.children) return 0.6
-      const fullPath = d.ancestors().map(d => d.data.name).reverse().join('/')
-      return selectedElements.has(fullPath) ? 1 : 0.4
-    })
   }
 
   return svg.node()
