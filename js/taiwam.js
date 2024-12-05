@@ -4,6 +4,8 @@ const dimentions = { width: 600, height: 600 }
 
 const radius = dimentions.width / 6
 
+const selectedElements = new Set()
+
 const arcVisible = d => { return d.y1 <= 3 && d.y0 >= 1 && d.x1 > d.x0 }
 const labelVisible = d => { return d.y1 <= 3 && d.y0 >= 1 && (d.y1 - d.y0) * (d.x1 - d.x0) > 0.03 }
 
@@ -58,6 +60,10 @@ d3.json('/data/taiwan-tea.json').then(data => {
     .style('cursor', 'pointer')
     .on('click', clicked)
 
+  path.filter(d => !d.children)
+    .style('cursor', 'pointer')
+    .on('click', toggleSelection)
+
   path.append('title')
     .text(d => `${d.ancestors().map(d => d.data.description)}`)
 
@@ -105,7 +111,20 @@ d3.json('/data/taiwan-tea.json').then(data => {
       .filter(function (d) {
         return +this.getAttribute('fill-opacity') || arcVisible(d.target)
       })
-      .attr('fill-opacity', d => arcVisible(d.target) ? (d.children ? 0.6 : 0.4) : 0)
+      .attr('fill-opacity', d => {
+        if (arcVisible(d.target)) {
+          const fullPath = d.ancestors().map(d => d.data.name).reverse().join('/')
+          if (selectedElements.has(fullPath)) {
+            return 1
+          } else if (d.children) {
+            return 0.6
+          } else {
+            return 0.4
+          }
+        } else {
+          return 0
+        }
+      })
       .attr('pointer-events', d => arcVisible(d.target) ? 'auto' : 'none')
       .attrTween('d', d => () => arc(d.current))
 
@@ -114,6 +133,26 @@ d3.json('/data/taiwan-tea.json').then(data => {
     }).transition(t)
       .attr('fill-opacity', d => +labelVisible(d.target))
       .attrTween('transform', d => () => labelTransform(d.current))
+  }
+
+  function toggleSelection (event, d) {
+    const fullPath = d.ancestors().map(d => d.data.name).reverse().join('/')
+    if (selectedElements.has(fullPath)) {
+      selectedElements.delete(fullPath)
+      d3.select(this).attr('fill-opacity', 0.4)
+    } else {
+      selectedElements.add(fullPath)
+      d3.select(this).attr('fill-opacity', 1)
+    }
+    updateSelectionVisuals()
+  }
+
+  function updateSelectionVisuals () {
+    path.attr('fill-opacity', d => {
+      if (d.children) return 0.6
+      const fullPath = d.ancestors().map(d => d.data.name).reverse().join('/')
+      return selectedElements.has(fullPath) ? 1 : 0.4
+    })
   }
 
   return svg.node()
