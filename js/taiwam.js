@@ -4,7 +4,7 @@ const dimentions = { width: 600, height: 600 }
 
 const radius = dimentions.width / 6
 
-const selectedElements = new Set()
+const selectedElements = new Set(JSON.parse(window.localStorage.getItem('selectedElements')) || [])
 
 const arcVisible = d => { return d.y1 <= 3 && d.y0 >= 1 && d.x1 > d.x0 }
 const labelVisible = d => { return d.y1 <= 3 && d.y0 >= 1 && (d.y1 - d.y0) * (d.x1 - d.x0) > 0.03 }
@@ -144,6 +144,8 @@ d3.json('/data/taiwan-tea.json').then(data => {
       selectedElements.add(fullPath)
       d3.select(this).attr('fill-opacity', 1)
     }
+
+    window.localStorage.setItem('selectedElements', JSON.stringify([...selectedElements]))
   }
 
   return svg.node()
