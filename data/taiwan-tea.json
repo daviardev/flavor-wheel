@@ -473,117 +473,276 @@
             "name": "Taste",
             "description": "Taste testing is a sensory evaluation focused on identifying and classifying the flavors present in a sample, such as food or beverages. During this test, characteristics such as sweetness, acidity, bitterness, saltiness and umami are analyzed, as well as their combinations and persistence on the palate, with the objective of understanding and describing the taste profile of the product.",
             "color": "#384e36",
-            "completed": false,
             "children": [
                 {
                     "name": "Basic",
                     "description": "The basic taste evaluation focuses on identifying the five fundamental tastes: sweet, salty, sour, bitter and umami. This test analyzes the intensity, balance and presence of these flavors in the sample, providing key information about their taste profile and their impact on the palate.",
                     "color": "#384e36",
-                    "sourness": {
-                        "calification": 0,
-                        "buttons": [
-                            { "value": 1, "size": "Small" },
-                            { "value": 2, "size": "slightly larger" },
-                            { "value": 3, "size": "normal" },
-                            { "value": 4, "size": "Bigger" },
-                            { "value": 5, "size": "The biggest" }
-                        ]
-                    },
-                    "saltiness": {
-                        "calification": 0,
-                        "buttons": [
-                            { "value": 1, "size": "Small" },
-                            { "value": 2, "size": "slightly larger" },
-                            { "value": 3, "size": "normal" },
-                            { "value": 4, "size": "Bigger" },
-                            { "value": 5, "size": "The biggest" }
-                        ]
-                    },
-                    "sweetness": {
-                        "calification": 0,
-                        "buttons": [
-                            { "value": 1, "size": "Small" },
-                            { "value": 2, "size": "slightly larger" },
-                            { "value": 3, "size": "normal" },
-                            { "value": 4, "size": "Bigger" },
-                            { "value": 5, "size": "The biggest" }
-                        ]
-                    },
-                    "bitterness": {
-                        "calification": 0,
-                        "buttons": [
-                            { "value": 1, "size": "Small" },
-                            { "value": 2, "size": "slightly larger" },
-                            { "value": 3, "size": "normal" },
-                            { "value": 4, "size": "Bigger" },
-                            { "value": 5, "size": "The biggest" }
-                        ]
-                    },
-                    "umami": {
-                        "calification": 0,
-                        "buttons": [
-                            { "value": 1, "size": "Small" },
-                            { "value": 2, "size": "slightly larger" },
-                            { "value": 3, "size": "normal" },
-                            { "value": 4, "size": "Bigger" },
-                            { "value": 5, "size": "The biggest" }
-                        ]
-                    }
+                    "children": [
+                        {
+                            "name": "Sourness",
+                            "color": "#384e36",
+                            "children": [
+                                {
+                                    "name": 1,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 2,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 3,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 5,
+                                    "color":"#384e36"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Saltiness",
+                            "color": "#384e36",
+                            "children": [
+                                {
+                                    "name": 1,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 2,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 3,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 4,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 5,
+                                    "color":"#384e36"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Sweetness",
+                            "color": "#384e36",
+                            "children": [
+                                {
+                                    "name": 1,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 2,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 3,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 4,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 5,
+                                    "color": "#384e36" 
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Bitterness",
+                            "color": "#384e36",
+                            "children": [
+                                {
+                                    "name": 1,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 2,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 3,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 4,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 5,
+                                    "color":"#384e36"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Umami",
+                            "color": "#384e36",
+                            "children": [
+                                {
+                                    "name": 1,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 2,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 3,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 4,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 5,
+                                    "color":"#384e36"
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "name": "Mouthfeel",
                     "description": "Mouthfeel evaluation analyzes the physical properties of the sample, such as texture, viscosity, astringency, creaminess, and effervescence. This analysis complements the perception of flavor by considering how the product feels on the palate, which influences the overall sensory experience.",
-                    "color": "#384e36",
-                    "aftertaste": {
-                        "calification": 0,
-                        "buttons": [
-                            { "value": 1, "size": "Small" },
-                            { "value": 2, "size": "slightly larger" },
-                            { "value": 3, "size": "normal" },
-                            { "value": 4, "size": "Bigger" },
-                            { "value": 5, "size": "The biggest" }
-                        ]
-                    },
-                    "fullness": {
-                        "calification": 0,
-                        "buttons": [
-                            { "value": 1, "size": "Small" },
-                            { "value": 2, "size": "slightly larger" },
-                            { "value": 3, "size": "normal" },
-                            { "value": 4, "size": "Bigger" },
-                            { "value": 5, "size": "The biggest" }
-                        ]
-                    },
-                    "smoothness": {
-                        "calification": 0,
-                        "buttons": [
-                            { "value": 1, "size": "Small" },
-                            { "value": 2, "size": "slightly larger" },
-                            { "value": 3, "size": "normal" },
-                            { "value": 4, "size": "Bigger" },
-                            { "value": 5, "size": "The biggest" }
-                        ]
-                    },
-                    "fineness": {
-                        "calification": 0,
-                        "buttons": [
-                            { "value": 1, "size": "Small" },
-                            { "value": 2, "size": "slightly larger" },
-                            { "value": 3, "size": "normal" },
-                            { "value": 4, "size": "Bigger" },
-                            { "value": 5, "size": "The biggest" }
-                        ]
-                    },
-                    "purity": {
-                        "calification": 0,
-                        "buttons": [
-                            { "value": 1, "size": "Small" },
-                            { "value": 2, "size": "slightly larger" },
-                            { "value": 3, "size": "normal" },
-                            { "value": 4, "size": "Bigger" },
-                            { "value": 5, "size": "The biggest" }
-                        ]
-                    }
+                    "color":"#384e36",
+                    "children": [
+                        {
+                            "name": "Aftertaste",
+                            "color": "#384e36",
+                            "children": [
+                                {
+                                    "name": 1,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 2,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 3,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 4,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 5,
+                                    "color": "#384e36" 
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Fullness",
+                            "color": "#384e36",
+                            "children": [
+                                {
+                                    "name": 1,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 2,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 3,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 4,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 5,
+                                    "color": "#384e36" 
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Smoothness",
+                            "color": "#384e36",
+                            "children": [
+                                {
+                                    "name": 1,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 2,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 3,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 4,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 5,
+                                    "color": "#384e36" 
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Fineness",
+                            "color": "#384e36",
+                            "children": [
+                                {
+                                    "name": 1,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 2,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 3,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 4,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 5,
+                                    "color": "#384e36" 
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Purity",
+                            "color": "#384e36",
+                            "children": [
+                                {
+                                    "name": 1,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 2,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 3,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 4,
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 5,
+                                    "color": "#384e36" 
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         }
