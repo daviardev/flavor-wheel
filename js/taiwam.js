@@ -80,7 +80,7 @@ d3.json('/data/taiwan-tea.json').then(data => {
     .on('click', toggleSelection)
 
   path.append('title')
-    .text(d => `${d.ancestors().map(d => d.data.description)}`)
+    .text(d => d.data.description)
 
   const label = g.append('g')
     .attr('pointer-events', 'none')
