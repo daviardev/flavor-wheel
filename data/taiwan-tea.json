@@ -481,126 +481,160 @@
                     "children": [
                         {
                             "name": "Sourness",
+                            "description": "Sour taste is related to foods such as lemon, vinegar or yogurt. It is perceived when acids, such as citric acid or acetic acid, are present.",
                             "color": "#384e36",
                             "children": [
                                 {
                                     "name": 1,
+                                    "description": "The flavor is barely perceptible.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 2,
+                                    "description": "The flavor is light and does not dominate the overall profile.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 3,
+                                    "description": "The flavor is clearly identifiable but balanced with other flavors.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 4,
+                                    "description": "The flavor begins to stand out from the others and is predominant.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 5,
+                                    "description": "The flavor is extremely strong and completely dominates the flavor profile.",
                                     "color":"#384e36"
                                 }
                             ]
                         },
                         {
                             "name": "Saltiness",
+                            "description": "This flavor is perceived when salts are present, mainly sodium chloride (table salt). It is essential to improve the overall flavor of food.",
                             "color": "#384e36",
                             "children": [
                                 {
                                     "name": 1,
+                                    "description": "The flavor is barely perceptible.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 2,
+                                    "description": "The flavor is light and does not dominate the overall profile.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 3,
+                                    "description": "The flavor is clearly identifiable but balanced with other flavors.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 4,
+                                    "description": "The flavor begins to stand out from the others and is predominant.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 5,
+                                    "description": "The flavor is extremely strong and completely dominates the flavor profile.",
                                     "color":"#384e36"
                                 }
                             ]
                         },
                         {
                             "name": "Sweetness",
+                            "description": "Sweetness is perceived when sugars or sweeteners are present. It is a pleasant taste that is usually associated with desserts and comfort foods.",
                             "color": "#384e36",
                             "children": [
                                 {
                                     "name": 1,
+                                    "description": "The flavor is barely perceptible.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 2,
+                                    "description": "The flavor is light and does not dominate the overall profile.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 3,
+                                    "description": "The flavor is clearly identifiable but balanced with other flavors.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 4,
+                                    "description": "The flavor begins to stand out from the others and is predominant.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 5,
+                                    "description": "The flavor is extremely strong and completely dominates the flavor profile.",
                                     "color": "#384e36" 
                                 }
                             ]
                         },
                         {
                             "name": "Bitterness",
+                            "description": "This flavor is related to compounds such as caffeine or tannins. Although sometimes considered unpleasant, it is appreciated in foods such as coffee and bitter chocolate.",
                             "color": "#384e36",
                             "children": [
                                 {
                                     "name": 1,
+                                    "description": "The flavor is barely perceptible.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 2,
+                                    "description": "The flavor is light and does not dominate the overall profile.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 3,
+                                    "description": "The flavor is clearly identifiable but balanced with other flavors.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 4,
+                                    "description": "The flavor begins to stand out from the others and is predominant.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 5,
+                                    "description": "The flavor is extremely strong and completely dominates the flavor profile.",
                                     "color":"#384e36"
                                 }
                             ]
                         },
                         {
                             "name": "Umami",
+                            "description": "This flavor, known as “savory” or “delicious”, is associated with foods rich in monosodium glutamate or free amino acids. It is common in protein or fermented foods.",
                             "color": "#384e36",
                             "children": [
                                 {
                                     "name": 1,
+                                    "description": "The flavor is barely perceptible.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 2,
+                                    "description": "The flavor is light and does not dominate the overall profile.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 3,
+                                    "description": "The flavor is clearly identifiable but balanced with other flavors.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 4,
+                                    "description": "The flavor begins to stand out from the others and is predominant.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 5,
+                                    "description": "The flavor is extremely strong and completely dominates the flavor profile.",
                                     "color":"#384e36"
                                 }
                             ]
@@ -618,22 +652,27 @@
                             "children": [
                                 {
                                     "name": 1,
+                                    "description": "The flavor is barely perceptible.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 2,
+                                    "description": "The flavor is light and does not dominate the overall profile.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 3,
+                                    "description": "The flavor is clearly identifiable but balanced with other flavors.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 4,
+                                    "description": "The flavor begins to stand out from the others and is predominant.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 5,
+                                    "description": "The flavor is extremely strong and completely dominates the flavor profile.",
                                     "color": "#384e36" 
                                 }
                             ]
@@ -644,22 +683,27 @@
                             "children": [
                                 {
                                     "name": 1,
+                                    "description": "The flavor is barely perceptible.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 2,
+                                    "description": "The flavor is light and does not dominate the overall profile.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 3,
+                                    "description": "The flavor is clearly identifiable but balanced with other flavors.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 4,
+                                    "description": "The flavor begins to stand out from the others and is predominant.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 5,
+                                    "description": "The flavor is extremely strong and completely dominates the flavor profile.",
                                     "color": "#384e36" 
                                 }
                             ]
@@ -670,22 +714,27 @@
                             "children": [
                                 {
                                     "name": 1,
+                                    "description": "The flavor is barely perceptible.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 2,
+                                    "description": "The flavor is light and does not dominate the overall profile.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 3,
+                                    "description": "The flavor is clearly identifiable but balanced with other flavors.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 4,
+                                    "description": "The flavor begins to stand out from the others and is predominant.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 5,
+                                    "description": "The flavor is extremely strong and completely dominates the flavor profile.",
                                     "color": "#384e36" 
                                 }
                             ]
@@ -696,22 +745,27 @@
                             "children": [
                                 {
                                     "name": 1,
+                                    "description": "The flavor is barely perceptible.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 2,
+                                    "description": "The flavor is light and does not dominate the overall profile.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 3,
+                                    "description": "The flavor is clearly identifiable but balanced with other flavors.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 4,
+                                    "description": "The flavor begins to stand out from the others and is predominant.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 5,
+                                    "description": "The flavor is extremely strong and completely dominates the flavor profile.",
                                     "color": "#384e36" 
                                 }
                             ]
@@ -722,22 +776,27 @@
                             "children": [
                                 {
                                     "name": 1,
+                                    "description": "The flavor is barely perceptible.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 2,
+                                    "description": "The flavor is light and does not dominate the overall profile.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 3,
+                                    "description": "The flavor is clearly identifiable but balanced with other flavors.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 4,
+                                    "description": "The flavor begins to stand out from the others and is predominant.",
                                     "color":"#384e36"
                                 },
                                 {
                                     "name": 5,
+                                    "description": "The flavor is extremely strong and completely dominates the flavor profile.",
                                     "color": "#384e36" 
                                 }
                             ]
