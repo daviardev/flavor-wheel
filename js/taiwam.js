@@ -5,6 +5,7 @@ const dimentions = { width: 600, height: 600 }
 const radius = dimentions.width / 6
 
 const selectedElements = new Set(JSON.parse(window.localStorage.getItem('selectedElements')) || [])
+const tasteSelections = new Map(JSON.parse(window.localStorage.getItem('tasteSelections')) || [])
 
 const arcVisible = d => { return d.y1 <= 3 && d.y0 >= 1 && d.x1 > d.x0 }
 const labelVisible = d => { return d.y1 <= 3 && d.y0 >= 1 && (d.y1 - d.y0) * (d.x1 - d.x0) > 0.03 }
@@ -14,6 +15,20 @@ const labelTransform = d => {
   const y = (d.y0 + d.y1) / 2 * radius
 
   return `rotate(${x - 90}) translate(${y}, 0) rotate(${x < 180 ? 0 : 180})`
+}
+
+const hasAromaSelection = () => { return Array.from(selectedElements).some(path => path.includes('Aroma')) }
+
+const califications = value => {
+  const dots = {
+    1: '●',
+    2: '● ●',
+    3: '● ● ●',
+    4: '● ● ● ●',
+    5: '● ● ● ● ●'
+  }
+
+  return dots[value] || value
 }
 
 d3.json('/data/taiwan-tea.json').then(data => {
@@ -77,7 +92,7 @@ d3.json('/data/taiwan-tea.json').then(data => {
     .attr('dy', '0.35em')
     .attr('fill-opacity', d => +labelVisible(d.current))
     .attr('transform', d => labelTransform(d.current))
-    .text(d => d.data.name)
+    .text(d => califications(d) ? califications(d.data.name) : d.data.name)
 
   const parent = svg.append('circle')
     .datum(partition)
@@ -88,6 +103,50 @@ d3.json('/data/taiwan-tea.json').then(data => {
 
   parent.append('title')
     .text('Return')
+
+  function toggleSelection (event, d) {
+    const fullPath = d.ancestors().map(d => d.data.name).reverse().join('/')
+    const isTaste = d.ancestors().some(node => node.data.name === 'Taste')
+
+    if (isTaste) {
+      if (!hasAromaSelection()) return
+
+      const category = d.parent.data.name
+      const currentSelection = tasteSelections.get(category)
+
+      currentSelection === fullPath
+        ? tasteSelections.delete(category)
+        : tasteSelections.set(category, fullPath)
+
+      window.localStorage.setItem('tasteSelections', JSON.stringify(Array.from(tasteSelections.entries())))
+    } else {
+      selectedElements.has(fullPath)
+        ? selectedElements.delete(fullPath)
+        : selectedElements.add(fullPath)
+
+      window.localStorage.setItem('selectedElements', JSON.stringify([...selectedElements]))
+    }
+
+    updateVisuals()
+  }
+
+  function updateVisuals () {
+    path.attr('fill-opacity', d => {
+      if (!arcVisible(d.current)) return 0
+
+      const fullPath = d.ancestors().map(d => d.data.name).reverse().join('/')
+      const isTaste = d.ancestors().some(node => node.data.name === 'Taste')
+
+      if (isTaste) {
+        if (!hasAromaSelection()) return 0.3
+        if (d.children) return 0.6
+        const category = d.parent.data.name
+        return tasteSelections.get(category) === fullPath ? 1 : 0.4
+      }
+
+      return selectedElements.has(fullPath) ? 1 : (d.children ? 0.6 : 0.4)
+    })
+  }
 
   function clicked (event, p) {
     parent.datum(p.parent || partition)
@@ -111,20 +170,7 @@ d3.json('/data/taiwan-tea.json').then(data => {
       .filter(function (d) {
         return +this.getAttribute('fill-opacity') || arcVisible(d.target)
       })
-      .attr('fill-opacity', d => {
-        if (arcVisible(d.target)) {
-          const fullPath = d.ancestors().map(d => d.data.name).reverse().join('/')
-          if (selectedElements.has(fullPath)) {
-            return 1
-          } else if (d.children) {
-            return 0.6
-          } else {
-            return 0.4
-          }
-        } else {
-          return 0
-        }
-      })
+      .attr('fill-opacity', d => arcVisible(d.target) ? (d.children ? 0.6 : 0.4) : 0)
       .attr('pointer-events', d => arcVisible(d.target) ? 'auto' : 'none')
       .attrTween('d', d => () => arc(d.current))
 
@@ -133,19 +179,8 @@ d3.json('/data/taiwan-tea.json').then(data => {
     }).transition(t)
       .attr('fill-opacity', d => +labelVisible(d.target))
       .attrTween('transform', d => () => labelTransform(d.current))
-  }
 
-  function toggleSelection (event, d) {
-    const fullPath = d.ancestors().map(d => d.data.name).reverse().join('/')
-    if (selectedElements.has(fullPath)) {
-      selectedElements.delete(fullPath)
-      d3.select(this).attr('fill-opacity', 0.4)
-    } else {
-      selectedElements.add(fullPath)
-      d3.select(this).attr('fill-opacity', 1)
-    }
-
-    window.localStorage.setItem('selectedElements', JSON.stringify([...selectedElements]))
+    t.end().then(updateVisuals)
   }
 
   return svg.node()
