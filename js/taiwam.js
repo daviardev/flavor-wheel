@@ -31,6 +31,57 @@ const califications = value => {
   return dots[value] || value
 }
 
+const isTestComplete = () => {
+  const requiredTasteCategories = ['Sourness', 'Saltiness', 'Sweetness', 'Bitterness', 'Umami',
+    'Aftertaste', 'Fullness', 'Smoothness', 'Fineness', 'Purity']
+  return hasAromaSelection() && requiredTasteCategories.every(category => tasteSelections.has(category))
+}
+
+const generateResultsTable = () => {
+  const tableContainer = document.createElement('div')
+  tableContainer.innerHTML = `
+    <h2>Resultados de la Prueba</h2>
+    <table id="resultsTable">
+      <tr>
+        <th>Categoría</th>
+        <th>Selección</th>
+      </tr>
+      ${Array.from(selectedElements).map(path => `
+        <tr>
+          <td>${path.split('/')[1]}</td>
+          <td>${path.split('/').slice(2).join(' > ')}</td>
+        </tr>
+      `).join('')}
+      ${Array.from(tasteSelections.entries()).map(([category, selection]) => `
+        <tr>
+          <td>${category}</td>
+          <td>${selection.split('/').pop()}</td>
+        </tr>
+      `).join('')}
+    </table>
+    <div>
+      <label for="testName">Nombre de la Prueba:</label>
+      <input type="text" id="testName">
+    </div>
+    <div>
+      <label for="rating">Calificación:</label>
+      <select id="rating">
+        <option value="1">1 Estrella</option>
+        <option value="2">2 Estrellas</option>
+        <option value="3">3 Estrellas</option>
+        <option value="4">4 Estrellas</option>
+        <option value="5">5 Estrellas</option>
+      </select>
+    </div>
+    <div>
+      <label for="notes">Notas:</label>
+      <textarea id="notes"></textarea>
+    </div>
+    <button id="saveResults">Guardar Resultados</button>
+  `
+  return tableContainer
+}
+
 d3.json('/data/taiwan-tea.json').then(data => {
   const hierarchy = d3.hierarchy(data)
     .sum(d => d.value || d.children ? 0 : 1)
@@ -104,6 +155,13 @@ d3.json('/data/taiwan-tea.json').then(data => {
   parent.append('title')
     .text('Return')
 
+  const finishButton = d3.select('#chart')
+    .append('button')
+    .attr('id', 'finishTest')
+    .text('Finalizar Prueba')
+    .attr('disabled', true)
+    .on('click', finishTest)
+
   function toggleSelection (event, d) {
     const fullPath = d.ancestors().map(d => d.data.name).reverse().join('/')
     const isTaste = d.ancestors().some(node => node.data.name === 'Taste')
@@ -146,6 +204,8 @@ d3.json('/data/taiwan-tea.json').then(data => {
 
       return selectedElements.has(fullPath) ? 1 : (d.children ? 0.6 : 0.4)
     })
+
+    finishButton.attr('disabled', isTestComplete() ? null : true)
   }
 
   function clicked (event, p) {
@@ -181,6 +241,43 @@ d3.json('/data/taiwan-tea.json').then(data => {
       .attrTween('transform', d => () => labelTransform(d.current))
 
     t.end().then(updateVisuals)
+  }
+
+  function finishTest () {
+    !isTestComplete() &&
+      window.alert('Por favor, complete todas las selecciones antes de finalizar la prueba.')
+
+    d3
+      .select('#chart')
+      .style('display', 'none')
+
+    const resultsContainer = d3.select('body').append('div').attr('id', 'resultsContainer')
+    resultsContainer.node().appendChild(generateResultsTable())
+
+    document.getElementById('saveResults').addEventListener('click', saveResults)
+  }
+
+  function saveResults () {
+    const testName = document.getElementById('testName').value
+    const rating = document.getElementById('rating').value
+    const notes = document.getElementById('notes').value
+
+    !testName &&
+      window.alert('Por favor, ingrese un nombre para la prueba.')
+
+    const results = {
+      testName,
+      rating,
+      notes,
+      aromaSelections: Array.from(selectedElements),
+      tasteSelections: Array.from(tasteSelections.entries())
+    }
+
+    const savedTests = JSON.parse(window.localStorage.getItem('savedTests') || '[]')
+    savedTests.push(results)
+    window.localStorage.setItem('savedTests', JSON.stringify(savedTests))
+
+    window.alert('Resultados de la prueba guardados exitosamente!')
   }
 
   return svg.node()
