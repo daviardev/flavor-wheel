@@ -3,7 +3,7 @@
         {
             "name": "Aroma",
             "description": "Aroma testing is a sensory exploration designed to identify and classify the different odors perceived in a sample, such as food, beverages or fragrances. This analysis focuses on recognizing top notes, subcategories and specific attributes that make up the aroma profile, helping to improve sensory appreciation and product characterization.",
-            "color": "#d6ffd6",
+            "color": "#ffffff",
             "children": [
                 {
                     "name": "Vegetal",
@@ -472,7 +472,7 @@
         {
             "name": "Taste",
             "description": "Taste testing is a sensory evaluation focused on identifying and classifying the flavors present in a sample, such as food or beverages. During this test, characteristics such as sweetness, acidity, bitterness, saltiness and umami are analyzed, as well as their combinations and persistence on the palate, with the objective of understanding and describing the taste profile of the product.",
-            "color": "#384e36",
+            "color": "#ffffff",
             "children": [
                 {
                     "name": "Basic",
@@ -802,6 +802,52 @@
                             ]
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "name": "Color",
+            "color": "#ffffff",
+            "children": [
+                {
+                    "name": "Dark",
+                    "color": "#3b2c2b"
+                },
+                {
+                    "name": "Black",
+                    "color": "#b7431f"
+                },
+                {
+                    "name": "Red",
+                    "color": "#ea5506"
+                },
+                {
+                    "name": "Yellow",
+                    "color": "#efb810"
+                },
+                {
+                    "name": "Oolong, Beauty",
+                    "color": "#ffc54c"
+                },
+                {
+                    "name": "Green",
+                    "color": "#e0ebaf"
+                },
+                {
+                    "name": "Oolong, Baozhong",
+                    "color": "#ffffcc"
+                },
+                {
+                    "name": "Shaded, Oolong",
+                    "color": "#ffedab"
+                },
+                {
+                    "name": "Dongding",
+                    "color": "#fcd575"
+                },
+                {
+                    "name": "Tieguanyin",
+                    "color": "#d9a62e"
                 }
             ]
         }
