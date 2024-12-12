@@ -1,23 +1,29 @@
 import * as d3 from 'd3'
 
-const dimentions = { width: 600, height: 600 }
+import { showToast, showPersistentToast, removeToast } from './toast'
 
+const dimentions = { width: 600, height: 600 }
 const radius = dimentions.width / 6
 
 const selectedElements = new Set(JSON.parse(window.localStorage.getItem('selectedElements')) || [])
 const tasteSelections = new Map(JSON.parse(window.localStorage.getItem('tasteSelections')) || [])
 
-const arcVisible = d => { return d.y1 <= 3 && d.y0 >= 1 && d.x1 > d.x0 }
-const labelVisible = d => { return d.y1 <= 3 && d.y0 >= 1 && (d.y1 - d.y0) * (d.x1 - d.x0) > 0.03 }
+let colorSelection = window.localStorage.getItem('colorSelection') || null
+
+let completionToast = null
+
+const arcVisible = d => d.y1 <= 3 && d.y0 >= 1 && d.x1 > d.x0
+const labelVisible = d => d.y1 <= 3 && d.y0 >= 1 && (d.y1 - d.y0) * (d.x1 - d.x0) > 0.03
 
 const labelTransform = d => {
   const x = (d.x0 + d.x1) / 2 * 180 / Math.PI
   const y = (d.y0 + d.y1) / 2 * radius
-
   return `rotate(${x - 90}) translate(${y}, 0) rotate(${x < 180 ? 0 : 180})`
 }
 
-const hasAromaSelection = () => { return Array.from(selectedElements).some(path => path.includes('Aroma')) }
+const hasAromaSelection = () => Array.from(selectedElements).some(path => path.includes('Aroma'))
+
+const tableContainer = document.getElementById('content-results')
 
 const califications = value => {
   const dots = {
@@ -27,59 +33,13 @@ const califications = value => {
     4: '● ● ● ●',
     5: '● ● ● ● ●'
   }
-
   return dots[value] || value
 }
 
 const isTestComplete = () => {
   const requiredTasteCategories = ['Sourness', 'Saltiness', 'Sweetness', 'Bitterness', 'Umami',
     'Aftertaste', 'Fullness', 'Smoothness', 'Fineness', 'Purity']
-  return hasAromaSelection() && requiredTasteCategories.every(category => tasteSelections.has(category))
-}
-
-const generateResultsTable = () => {
-  const tableContainer = document.createElement('div')
-  tableContainer.innerHTML = `
-    <h2>Resultados de la Prueba</h2>
-    <table id="resultsTable">
-      <tr>
-        <th>Categoría</th>
-        <th>Selección</th>
-      </tr>
-      ${Array.from(selectedElements).map(path => `
-        <tr>
-          <td>${path.split('/')[1]}</td>
-          <td>${path.split('/').slice(2).join(' > ')}</td>
-        </tr>
-      `).join('')}
-      ${Array.from(tasteSelections.entries()).map(([category, selection]) => `
-        <tr>
-          <td>${category}</td>
-          <td>${selection.split('/').pop()}</td>
-        </tr>
-      `).join('')}
-    </table>
-    <div>
-      <label for="testName">Nombre de la Prueba:</label>
-      <input type="text" id="testName">
-    </div>
-    <div>
-      <label for="rating">Calificación:</label>
-      <select id="rating">
-        <option value="1">1 Estrella</option>
-        <option value="2">2 Estrellas</option>
-        <option value="3">3 Estrellas</option>
-        <option value="4">4 Estrellas</option>
-        <option value="5">5 Estrellas</option>
-      </select>
-    </div>
-    <div>
-      <label for="notes">Notas:</label>
-      <textarea id="notes"></textarea>
-    </div>
-    <button id="saveResults">Guardar Resultados</button>
-  `
-  return tableContainer
+  return hasAromaSelection() && requiredTasteCategories.every(category => tasteSelections.has(category)) && colorSelection !== null
 }
 
 d3.json('/data/taiwan-tea.json').then(data => {
@@ -148,23 +108,193 @@ d3.json('/data/taiwan-tea.json').then(data => {
   const parent = svg.append('circle')
     .datum(partition)
     .attr('r', radius)
-    .attr('fill', 'none')
+    .attr('fill', 'black')
     .attr('pointer-events', 'all')
     .on('click', clicked)
 
   parent.append('title')
-    .text('Return')
+    .text('To go back')
 
-  const finishButton = d3.select('#chart')
-    .append('button')
-    .attr('id', 'finishTest')
-    .text('Finalizar Prueba')
-    .attr('disabled', true)
-    .on('click', finishTest)
+  svg.append('text')
+    .style('text-anchor', 'middle')
+    .style('color', 'white')
+    .style('cursor', 'pointer')
+    .attr('startOffset', '50%')
+    .style('font-size', '16px')
+    .attr('pointer-events', 'none')
+    .text('Click here to go back')
+
+  const generateResultsTable = () => {
+    const basicCategories = ['Sourness', 'Saltiness', 'Sweetness', 'Bitterness', 'Umami']
+    const mouthCategories = ['Aftertaste', 'Fullness', 'Smoothness', 'Fineness', 'Purity']
+
+    const extractPathParts = (path) => {
+      const parts = path.split('/')
+      return {
+        category: parts[2],
+        element: parts.slice(3).join(', ')
+      }
+    }
+
+    const results = `
+    <div class="sections">
+      <div class="tea-info">
+        <h1 id="teaName">${colorSelection.split('/').pop()}</h1>
+        <div class="color-reference">
+          <div id="colorSwatch" style="background-color: ${getColorHex(colorSelection)}"></div>
+          <span>Color Reference</span>
+        </div>
+        <div class="form-group">
+          <label for="testName">Test Name</label>
+          <input type="text" id="testName" placeholder="Enter test name">
+        </div>
+        <div class="form-group">
+          <label>Rating</label>
+          <div id="rating">
+            <button class="star" data-rating="1">&#9733;</button>
+            <button class="star" data-rating="2">&#9733;</button>
+            <button class="star" data-rating="3">&#9733;</button>
+            <button class="star" data-rating="4">&#9733;</button>
+            <button class="star" data-rating="5">&#9733;</button>
+          </div>
+
+          <input type="hidden" id="ratingInput" name="rating" value="0">
+        </div>
+        <div class="form-group">
+          <label for="notes">Notes</label>
+          <textarea id="notes" placeholder="Add your tasting notes..."></textarea>
+        </div>
+        <div class="button-group">
+          <button class="button" id="saveResults">Download</button>
+          <button class="button" id="shareEmail">Share</button>
+          <button class="button" id="returnTest">Return test</button>
+          <button class="button" id="finishTest">Finish test</button>z
+        </div>
+      </div>
+      <div class="tea-profile">
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="aroma">Aroma</button>
+          <button class="tab-btn" data-tab="basic">Basic Flavor</button>
+          <button class="tab-btn" data-tab="mouthfeel">Mouthfeel</button>
+        </div>
+        <div class="tab-content active" id="aromaContent">
+          <div class="aroma-grid">
+            <div>
+              <h3>Aroma</h3>
+              <div id="aromaCategories">
+                ${Array.from(selectedElements)
+                  .filter(path => path.includes('Aroma'))
+                  .map(path => {
+                    const { category } = extractPathParts(path)
+                    return `<p>${category}</p>`
+                  }).join('')}
+              </div>
+            </div>
+            <div>
+              <h3>Elements</h3>
+              <div id="aromaDescriptions">
+                ${Array.from(selectedElements)
+                  .filter(path => path.includes('Aroma'))
+                  .map(path => {
+                    const { element } = extractPathParts(path)
+                    return `<p>${element}</p>`
+                  }).join('')}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-content" id="basicContent">
+          <h2>Basic Flavor Profile</h2>
+          <div id="basicTasteResults">
+            ${Array.from(tasteSelections.entries())
+              .filter(([category]) => basicCategories.includes(category))
+              .map(([category, selection]) => {
+                const intensity = parseInt(selection.split('/').pop())
+                return `
+                  <div>
+                    <label>${category}</label>
+                    <div class="intensity-bar">
+                      ${Array(5).fill().map((_, i) => `
+                        <div class="intensity-segment ${i < intensity ? 'active' : ''}"></div>
+                      `).join('')}
+                    </div>
+                  </div>
+                `
+              }).join('')}
+          </div>
+        </div>
+        <div class="tab-content" id="mouthfeelContent">
+          <h2>Mouthfeel Profile</h2>
+          <div id="mouthfeelResults">
+            ${Array.from(tasteSelections.entries())
+              .filter(([category]) => mouthCategories.includes(category))
+              .map(([category, selection]) => {
+                const intensity = parseInt(selection.split('/').pop())
+                return `
+                  <div>
+                    <label>${category}</label>
+                    <div class="intensity-bar">
+                      ${Array(5).fill().map((_, i) => `
+                        <div class="intensity-segment ${i < intensity ? 'active' : ''}"></div>
+                      `).join('')}
+                    </div>
+                  </div>
+                `
+              }).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+  `
+    tableContainer.innerHTML = results
+
+    const tabBtns = document.querySelectorAll('.tab-btn')
+    const tabContents = document.querySelectorAll('.tab-content')
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tabName = btn.getAttribute('data-tab')
+        tabBtns.forEach(b => b.classList.remove('active'))
+        tabContents.forEach(c => c.classList.remove('active'))
+        btn.classList.add('active')
+        document.getElementById(`${tabName}Content`).classList.add('active')
+      })
+    })
+
+    const stars = document.querySelectorAll('.star')
+    const ratingInput = document.getElementById('ratingInput')
+
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        const rating = star.getAttribute('data-rating')
+        ratingInput.value = rating
+        updateStars(rating)
+      })
+    })
+
+    const updateStars = rating => {
+      stars.forEach(star => {
+        const starRating = star.getAttribute('data-rating')
+        star.classList.toggle('active', starRating <= rating)
+      })
+    }
+
+    document.getElementById('saveResults').addEventListener('click', saveAsCSV)
+    document.getElementById('shareEmail').addEventListener('click', shareViaEmail)
+    document.getElementById('returnTest').addEventListener('click', returnToTest)
+    document.getElementById('finishTest').addEventListener('click', finishAndResetTest)
+  }
+
+  const getColorHex = (colorPath) => {
+    const colorData = data.children.find(child => child.name === 'Color')
+    const selectedColor = colorData.children.find(color => colorPath.includes(color.name))
+    return selectedColor ? selectedColor.color : '#FFFFFF'
+  }
 
   function toggleSelection (event, d) {
     const fullPath = d.ancestors().map(d => d.data.name).reverse().join('/')
     const isTaste = d.ancestors().some(node => node.data.name === 'Taste')
+    const isColor = d.ancestors().some(node => node.data.name === 'Color')
 
     if (isTaste) {
       if (!hasAromaSelection()) return
@@ -177,6 +307,14 @@ d3.json('/data/taiwan-tea.json').then(data => {
         : tasteSelections.set(category, fullPath)
 
       window.localStorage.setItem('tasteSelections', JSON.stringify(Array.from(tasteSelections.entries())))
+    } else if (isColor) {
+      if (colorSelection === fullPath) {
+        colorSelection = null
+        window.localStorage.removeItem('colorSelection')
+      } else {
+        colorSelection = fullPath
+        window.localStorage.setItem('colorSelection', colorSelection)
+      }
     } else {
       selectedElements.has(fullPath)
         ? selectedElements.delete(fullPath)
@@ -194,6 +332,7 @@ d3.json('/data/taiwan-tea.json').then(data => {
 
       const fullPath = d.ancestors().map(d => d.data.name).reverse().join('/')
       const isTaste = d.ancestors().some(node => node.data.name === 'Taste')
+      const isColor = d.ancestors().some(node => node.data.name === 'Color')
 
       if (isTaste) {
         if (!hasAromaSelection()) return 0.3
@@ -202,10 +341,30 @@ d3.json('/data/taiwan-tea.json').then(data => {
         return tasteSelections.get(category) === fullPath ? 1 : 0.4
       }
 
+      if (isColor) {
+        return colorSelection === fullPath ? 1 : (d.children ? 0.6 : 0.4)
+      }
+
       return selectedElements.has(fullPath) ? 1 : (d.children ? 0.6 : 0.4)
     })
 
-    finishButton.attr('disabled', isTestComplete() ? null : true)
+    if (isTestComplete()) {
+      if (!completionToast) {
+        showCompletionToast()
+      }
+    } else {
+      if (completionToast) {
+        removeToast(completionToast)
+        completionToast = null
+      }
+    }
+  }
+
+  function showCompletionToast () {
+    completionToast = showPersistentToast('Test complete! Click here to view results.', 'success', {
+      text: 'View Results',
+      onClick: finishTest
+    })
   }
 
   function clicked (event, p) {
@@ -244,43 +403,116 @@ d3.json('/data/taiwan-tea.json').then(data => {
   }
 
   function finishTest () {
-    !isTestComplete() &&
-      window.alert('Por favor, complete todas las selecciones antes de finalizar la prueba.')
-
-    d3
-      .select('#chart')
-      .style('display', 'none')
-
-    const resultsContainer = d3.select('body').append('div').attr('id', 'resultsContainer')
-    resultsContainer.node().appendChild(generateResultsTable())
-
-    document.getElementById('saveResults').addEventListener('click', saveResults)
-  }
-
-  function saveResults () {
-    const testName = document.getElementById('testName').value
-    const rating = document.getElementById('rating').value
-    const notes = document.getElementById('notes').value
-
-    !testName &&
-      window.alert('Por favor, ingrese un nombre para la prueba.')
-
-    const results = {
-      testName,
-      rating,
-      notes,
-      aromaSelections: Array.from(selectedElements),
-      tasteSelections: Array.from(tasteSelections.entries())
+    if (!isTestComplete()) {
+      showToast('Please complete all selections before finishing the test.', 'error')
+      return
     }
 
-    const savedTests = JSON.parse(window.localStorage.getItem('savedTests') || '[]')
-    savedTests.push(results)
-    window.localStorage.setItem('savedTests', JSON.stringify(savedTests))
+    if (completionToast) {
+      removeToast(completionToast)
+      completionToast = null
+    }
 
-    window.alert('Resultados de la prueba guardados exitosamente!')
+    document.getElementById('chart').style.display = 'none'
+    document.getElementById('content-results').style.display = 'block'
+    generateResultsTable()
   }
+
+  function returnToTest () {
+    document.getElementById('content-results').style.display = 'none'
+    document.getElementById('chart').style.display = 'block'
+  }
+
+  function finishAndResetTest () {
+    window.localStorage.removeItem('selectedElements')
+    window.localStorage.removeItem('tasteSelections')
+    window.localStorage.removeItem('colorSelection')
+
+    selectedElements.clear()
+    tasteSelections.clear()
+    colorSelection = null
+
+    document.getElementById('content-results').style.display = 'none'
+    document.getElementById('chart').style.display = 'block'
+
+    updateVisuals()
+    showToast('Test finished and reset. You can start a new test now.', 'success')
+  }
+
+  updateVisuals()
 
   return svg.node()
 }).catch(err => {
   console.error('Fetch error data', err)
 })
+
+function saveAsCSV () {
+  const testName = document.getElementById('testName').value.trim()
+  if (!testName) {
+    showToast('Please enter a test name before downloading.', 'error')
+    return
+  }
+
+  let csvContent = 'data:text/csv;charset=utf-8,'
+  csvContent += 'Category - Selection'
+
+  selectedElements.forEach(path => {
+    const parts = path.split('/')
+    csvContent += `\n${parts[1]}: ${parts.slice(2).join(' - ')}\n`
+  })
+
+  tasteSelections.forEach((selection, category) => { csvContent += `\n${category}: ${selection.split('/').pop()}\n` })
+
+  if (colorSelection) { csvContent += `\nColor: ${colorSelection.split('/').pop()}\n` }
+
+  csvContent += `\nTest Name: ${testName}\n`
+  csvContent += `Rating: ${document.getElementById('ratingInput').value} stars\n`
+  csvContent += `Notes: ${document.getElementById('notes').value}\n`
+
+  const encodedUri = encodeURI(csvContent)
+  const link = document.createElement('a')
+
+  link.setAttribute('href', encodedUri)
+  link.setAttribute('download', `${testName || 'test_results'}.csv`)
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+}
+
+function shareViaEmail () {
+  const testName = document.getElementById('testName').value.trim()
+  if (!testName) {
+    showToast('Please enter a test name before sharing.', 'error')
+    return
+  }
+
+  const rating = document.getElementById('ratingInput').value
+  const notes = document.getElementById('notes').value
+
+  const emailBody = `
+    Tea Tasting Test Results
+
+    Test Name: ${testName}
+    Rating: ${'★'.repeat(parseInt(rating))}${'☆'.repeat(5 - parseInt(rating))}
+    Color: ${colorSelection ? colorSelection.split('/').pop() : 'Not selected'}
+
+    Aroma Selections:
+    ${Array.from(selectedElements)
+      .filter(path => path.includes('Aroma'))
+      .map(path => {
+        const parts = path.split('/')
+        return `- ${parts[2]}: ${parts.slice(3).join(', ')}`
+      }).join('\n')}
+
+    Taste Selections:
+    ${Array.from(tasteSelections.entries())
+      .map(([category, selection]) => `- ${category}: ${selection.split('/').pop()}`)
+      .join('\n')}
+
+    Notes:
+    ${notes}
+`
+
+  const mailtoLink = `mailto:?subject=${encodeURIComponent(testName)}&body=${encodeURIComponent(emailBody)}`
+  window.location.href = mailtoLink
+}
