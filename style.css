@@ -120,6 +120,7 @@ textarea {
   border-radius: 4px;
   background-color: #222;
   color: #fff;
+  resize: none;
 }
 
 .star {
