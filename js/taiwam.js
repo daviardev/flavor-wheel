@@ -1,40 +1,16 @@
 import * as d3 from 'd3'
 
+import { arcVisible, labelVisible, labelTransform, califications, config } from './constants.js'
 import { showToast, showPersistentToast, removeToast } from './toast'
-
-const dimentions = { width: 600, height: 600 }
-const radius = dimentions.width / 6
 
 const selectedElements = new Set(JSON.parse(window.localStorage.getItem('selectedElements')) || [])
 const tasteSelections = new Map(JSON.parse(window.localStorage.getItem('tasteSelections')) || [])
 
 let colorSelection = window.localStorage.getItem('colorSelection') || null
 
-let completionToast = null
-
-const arcVisible = d => d.y1 <= 3 && d.y0 >= 1 && d.x1 > d.x0
-const labelVisible = d => d.y1 <= 3 && d.y0 >= 1 && (d.y1 - d.y0) * (d.x1 - d.x0) > 0.03
-
-const labelTransform = d => {
-  const x = (d.x0 + d.x1) / 2 * 180 / Math.PI
-  const y = (d.y0 + d.y1) / 2 * radius
-  return `rotate(${x - 90}) translate(${y}, 0) rotate(${x < 180 ? 0 : 180})`
-}
-
 const hasAromaSelection = () => Array.from(selectedElements).some(path => path.includes('Aroma'))
 
 const tableContainer = document.getElementById('content-results')
-
-const califications = value => {
-  const dots = {
-    1: '●',
-    2: '● ●',
-    3: '● ● ●',
-    4: '● ● ● ●',
-    5: '● ● ● ● ●'
-  }
-  return dots[value] || value
-}
 
 const isTestComplete = () => {
   const requiredTasteCategories = ['Sourness', 'Saltiness', 'Sweetness', 'Bitterness', 'Umami',
@@ -58,17 +34,17 @@ d3.json('/data/taiwan-tea.json').then(data => {
     .startAngle(d => d.x0)
     .endAngle(d => d.x1)
     .padAngle(d => Math.min((d.x1 - d.x0) / 2, 0.005))
-    .padRadius(radius * 1.5)
-    .innerRadius(d => d.y0 * radius)
-    .outerRadius(d => Math.max(d.y0 * radius, d.y1 * radius - 1))
+    .padRadius(config.radius * 1.5)
+    .innerRadius(d => d.y0 * config.radius)
+    .outerRadius(d => Math.max(d.y0 * config.radius, d.y1 * config.radius - 1))
 
   const svg = d3.select('#chart')
     .append('svg')
     .attr('viewBox', [
-      -dimentions.width / 2,
-      -dimentions.height / 2,
-      dimentions.width,
-      dimentions.height
+      -config.dimentions.width / 2,
+      -config.dimentions.height / 2,
+      config.dimentions.width,
+      config.dimentions.height
     ])
 
   const g = svg.append('g')
@@ -107,7 +83,7 @@ d3.json('/data/taiwan-tea.json').then(data => {
 
   const parent = svg.append('circle')
     .datum(partition)
-    .attr('r', radius)
+    .attr('r', config.radius)
     .attr('fill', 'black')
     .attr('pointer-events', 'all')
     .on('click', clicked)
@@ -168,7 +144,7 @@ d3.json('/data/taiwan-tea.json').then(data => {
           <button class="button" id="saveResults">Download</button>
           <button class="button" id="shareEmail">Share</button>
           <button class="button" id="returnTest">Return test</button>
-          <button class="button" id="finishTest">Finish test</button>z
+          <button class="button" id="finishTest">Finish test</button>
         </div>
       </div>
       <div class="tea-profile">
@@ -306,7 +282,7 @@ d3.json('/data/taiwan-tea.json').then(data => {
         ? tasteSelections.delete(category)
         : tasteSelections.set(category, fullPath)
 
-      window.localStorage.setItem('tasteSelections', JSON.stringify(Array.from(tasteSelections.entries())))
+      window.localStorage.setItem('tasteSelections', JSON.stringify([...tasteSelections]))
     } else if (isColor) {
       if (colorSelection === fullPath) {
         colorSelection = null
@@ -349,19 +325,19 @@ d3.json('/data/taiwan-tea.json').then(data => {
     })
 
     if (isTestComplete()) {
-      if (!completionToast) {
+      if (!config.completionToast) {
         showCompletionToast()
       }
     } else {
-      if (completionToast) {
-        removeToast(completionToast)
-        completionToast = null
+      if (config.completionToast) {
+        removeToast(config.completionToast)
+        config.completionToast = null
       }
     }
   }
 
   function showCompletionToast () {
-    completionToast = showPersistentToast('Test complete! Click here to view results.', 'success', {
+    config.completionToast = showPersistentToast('Test complete! Click here to view results.', 'success', {
       text: 'View Results',
       onClick: finishTest
     })
@@ -408,9 +384,9 @@ d3.json('/data/taiwan-tea.json').then(data => {
       return
     }
 
-    if (completionToast) {
-      removeToast(completionToast)
-      completionToast = null
+    if (config.completionToast) {
+      removeToast(config.completionToast)
+      config.completionToast = null
     }
 
     document.getElementById('chart').style.display = 'none'
