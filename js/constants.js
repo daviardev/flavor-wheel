@@ -1,4 +1,4 @@
-const config = {
+const arcs = {
   dimentions: { width: 600, height: 600 },
   radius: 100,
   completionsToast: null
@@ -9,7 +9,7 @@ const labelVisible = d => d.y1 <= 3 && d.y0 >= 1 && (d.y1 - d.y0) * (d.x1 - d.x0
 
 const labelTransform = d => {
   const x = (d.x0 + d.x1) / 2 * 180 / Math.PI
-  const y = (d.y0 + d.y1) / 2 * config.radius
+  const y = (d.y0 + d.y1) / 2 * arcs.radius
 
   return `rotate(${x - 90}) translate(${y}, 0) rotate(${x < 180 ? 0 : 180})`
 }
@@ -27,7 +27,7 @@ const califications = value => {
 }
 
 export {
-  config,
+  arcs,
   arcVisible,
   labelVisible,
   labelTransform,
