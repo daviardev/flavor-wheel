@@ -1,2 +1,31 @@
 import './style.css'
-import './js/taiwam'
+
+import createFlavorWheel from './js/flavorWheel'
+
+createFlavorWheel({
+  chart: {
+    svg: 'chart',
+    dataUrl: '/data/taiwan-tea.json'
+  },
+  storage: {
+    aroma: 'Aroma',
+    flavor: 'Flavors',
+    color: 'Color'
+  },
+  requiredFlavor: {
+    basic: ['Sourness', 'Saltiness', 'Sweetness', 'Bitterness', 'Umami'],
+    mouthfeel: ['Aftertaste', 'Fullness', 'Smoothness', 'Fineness', 'Purity']
+  },
+  formGroup: {
+    testName: 'testName',
+    star: 'star',
+    inputRate: 'ratingInput',
+    notes: 'notes',
+    download: 'saveResult',
+    share: 'shareResult',
+    returnTest: 'returnTest',
+    finish: 'finishTest'
+  },
+  tabButton: 'tab-page',
+  tabContent: 'tab-content-page'
+})
