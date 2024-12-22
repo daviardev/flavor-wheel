@@ -121,6 +121,7 @@ textarea {
   background-color: #222;
   color: #fff;
   resize: none;
+  field-sizing: content;
 }
 
 .star {
