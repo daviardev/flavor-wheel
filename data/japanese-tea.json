@@ -1,0 +1,746 @@
+{
+    "children": [
+        {
+            "name": "Aroma",
+            "description": "Aroma testing is a sensory exploration designed to identify and classify the different odors perceived in a sample, such as food, beverages or fragrances. This analysis focuses on recognizing top notes, subcategories and specific attributes that make up the aroma profile, helping to improve sensory appreciation and product characterization.",
+            "color": "#fff",
+            "children": [
+            {
+            "name": "Green",
+            "description": "A fresh and grassy aroma with hints of sweetness.",
+            "color": "#98d09e",
+            "children": [
+                {
+                    "name": "Wakaba",
+                    "description": "A delicate and refreshing scent reminiscent of young leaves.",
+                    "color": "#c5e1a5"
+                },
+                {
+                    "name": "Green grass",
+                    "description": "A vibrant and earthy aroma similar to freshly cut grass.",
+                    "color": "#c5e1a5"
+                },
+                {
+                    "name": "Kinisaya",
+                    "description": "A mild and soothing fragrance with subtle vegetal notes.",
+                    "color": "#c5e1a5"
+                },
+                {
+                    "name": "Tomato",
+                    "description": "A unique and savory scent with a hint of sweetness, reminiscent of ripe tomatoes.",
+                    "color": "#c5e1a5"
+                },
+                {
+                    "name": "Live trees - Forest",
+                    "description": "A rich and woody aroma that evokes the essence of a lush forest.",
+                    "color": "#c5e1a5"
+                }
+            ]
+        },
+        {
+            "name": "Dry",
+            "description": "A crisp and arid scent that evokes the essence of dry leaves and parched earth.",
+            "color": "#28414a",
+            "children": [
+                {
+                    "name": "Kashiwa mochi",
+                    "description": "A sweet and earthy aroma reminiscent of oak leaves and rice cakes.",
+                    "color": "#558b2f"
+                },
+                {
+                    "name": "Kusamachi",
+                    "description": "A fresh and herbal scent with notes of wild grasses and meadow flowers.",
+                    "color": "#558b2f"
+                },
+                {
+                    "name": "Straw",
+                    "description": "A dry and rustic fragrance that evokes the essence of sun-dried straw.",
+                    "color": "#558b2f"
+                },
+                {
+                    "name": "Kraft paper",
+                    "description": "A warm and woody aroma similar to natural, unbleached paper.",
+                    "color": "#558b2f"
+                },
+                {
+                    "name": "Wood Spoon",
+                    "description": "A subtle and comforting scent with hints of polished wood and craftsmanship.",
+                    "color": "#558b2f"
+                }
+            ]
+        },
+        {
+            "name": "Vegetable",
+            "description": "A collection of fresh and savory aromas reminiscent of various vegetables.",
+            "color": "#038300",
+            "children": [
+                {
+                    "name": "Spinach",
+                    "description": "A fresh and slightly bitter aroma similar to leafy greens.",
+                    "color": "#33691e"
+                },
+                {
+                    "name": "Edamame",
+                    "description": "A mild and nutty scent reminiscent of young soybeans.",
+                    "color": "#33691e"
+                },
+                {
+                    "name": "Fukashiimo",
+                    "description": "A sweet and earthy aroma similar to steamed sweet potatoes.",
+                    "color": "#33691e"
+                },
+                {
+                    "name": "Corn",
+                    "description": "A sweet and buttery fragrance that evokes the essence of fresh corn.",
+                    "color": "#33691e"
+                },
+                {
+                    "name": "Boiled vegetables",
+                    "description": "A warm and comforting scent reminiscent of various boiled vegetables.",
+                    "color": "#33691e"
+                }
+            ]
+        },
+        {
+            "name": "Marine",
+            "description": "A collection of fresh and briny aromas reminiscent of the sea.",
+            "color": "#17877e",
+            "children": [
+            {
+                "name": "Seaweed",
+                "description": "A salty and oceanic scent similar to fresh seaweed.",
+                "color": "#8bc34a"
+            },
+            {
+                "name": "Kelp",
+                "description": "A rich and briny aroma reminiscent of underwater kelp forests.",
+                "color": "#8bc34a"
+            },
+            {
+                "name": "Wakame",
+                "description": "A mild and slightly sweet scent similar to edible seaweed.",
+                "color": "#8bc34a"
+            },
+            {
+                "name": "Fish - Fish Dried",
+                "description": "A savory and umami-rich aroma similar to dried fish.",
+                "color": "#8bc34a"
+            }
+            ]
+        },
+        {
+            "name": "Flowery",
+            "description": "A collection of delicate and fragrant floral aromas.",
+            "color": "#fff4f9",
+            "children": [
+            {
+                "name": "Lily",
+                "description": "A sweet and intoxicating scent similar to blooming lilies.",
+                "color": "#d7c4da"
+            },
+            {
+                "name": "Mitsu",
+                "description": "A light and honeyed aroma reminiscent of nectar.",
+                "color": "#d7c4da"
+            },
+            {
+                "name": "Jasmine",
+                "description": "A rich and exotic fragrance similar to jasmine flowers.",
+                "color": "#d7c4da"
+            },
+            {
+                "name": "Cherry Blossom - Sakura",
+                "description": "A delicate and sweet scent reminiscent of cherry blossoms.",
+                "color": "#d7c4da"
+            }
+            ]
+        },
+        {
+            "name": "Fruity",
+            "description": "A collection of vibrant and sweet fruit aromas.",
+            "color": "#ea5506",
+            "children": [
+            {
+                "name": "Ripe",
+                "description": "A rich and juicy aroma similar to ripe fruits.",
+                "color": "#b7431f"
+            },
+            {
+                "name": "Peach",
+                "description": "A sweet and succulent scent reminiscent of fresh peaches.",
+                "color": "#b7431f"
+            },
+            {
+                "name": "Lychee",
+                "description": "A sweet and floral aroma similar to lychee fruit.",
+                "color": "#b7431f"
+            },
+            {
+                "name": "Orange",
+                "description": "A bright and citrusy fragrance reminiscent of fresh oranges.",
+                "color": "#b7431f"
+            },
+            {
+                "name": "Melon",
+                "description": "A sweet and refreshing scent similar to ripe melons.",
+                "color": "#b7431f"
+            },
+            {
+                "name": "Plum",
+                "description": "A sweet and tangy aroma reminiscent of ripe plums.",
+                "color": "#b7431f"
+            },
+            {
+                "name": "Yuzu",
+                "description": "A zesty and citrusy fragrance similar to yuzu fruit.",
+                "color": "#b7431f"
+            }
+            ]
+        },
+        {
+            "name": "Spicy",
+            "description": "A collection of warm and aromatic spice scents.",
+            "color": "#a69425",
+            "children": [
+            {
+                "name": "Vanilla",
+                "description": "A sweet and creamy aroma similar to vanilla beans.",
+                "color": "#cfa239"
+            },
+            {
+                "name": "Cinnamon",
+                "description": "A warm and spicy scent reminiscent of cinnamon sticks.",
+                "color": "#cfa239"
+            },
+            {
+                "name": "Sakura mochi",
+                "description": "A sweet and floral aroma similar to cherry blossom rice cakes.",
+                "color": "#cfa239"
+            }
+            ]
+        },
+        {
+            "name": "Roasted",
+            "description": "A collection of rich and toasty aromas.",
+            "color": "#d9a62e",
+            "children": [
+            {
+                "name": "Dashi",
+                "description": "A savory and umami-rich scent similar to Japanese soup stock.",
+                "color": "#d9a62e"
+            },
+            {
+                "name": "Soy sauce",
+                "description": "A salty and savory aroma reminiscent of soy sauce.",
+                "color": "#d9a62e"
+            },
+            {
+                "name": "Burnt",
+                "description": "A smoky and charred fragrance similar to burnt food.",
+                "color": "#d9a62e"
+            },
+            {
+                "name": "Kinako",
+                "description": "A nutty and roasted aroma similar to toasted soybean flour.",
+                "color": "#d9a62e"
+            }
+            ]
+        },
+        {
+            "name": "Sweet",
+            "description": "A collection of sugary and dessert-like aromas.",
+            "color": "#ff7720",
+            "children": [
+            {
+                "name": "Brown sugar",
+                "description": "A rich and caramel-like scent similar to brown sugar.",
+                "color": "#cfa239"
+            },
+            {
+                "name": "Candy=Tortuose",
+                "description": "A sweet and fruity aroma reminiscent of hard candies.",
+                "color": "#cfa239"
+            },
+            {
+                "name": "Honey",
+                "description": "A sweet and floral fragrance similar to fresh honey.",
+                "color": "#cfa239"
+            },
+            {
+                "name": "Yogourt",
+                "description": "A tangy and creamy scent reminiscent of yogurt.",
+                "color": "#cfa239"
+            }
+            ]
+        },
+        {
+            "name": "Burnt",
+            "description": "A collection of smoky and charred aromas.",
+            "color": "#4c220d",
+            "children": [
+            {
+                "name": "Bare tree",
+                "description": "A woody and earthy scent similar to bare tree branches.",
+                "color": "#3b2c2b"
+            },
+            {
+                "name": "Kero sene",
+                "description": "A strong and pungent aroma reminiscent of kerosene.",
+                "color": "#3b2c2b"
+            },
+            {
+                "name": "Tabacco",
+                "description": "A rich and smoky scent similar to tobacco leaves.",
+                "color": "#3b2c2b"
+            },
+            {
+                "name": "Cacao",
+                "description": "A deep and chocolatey aroma reminiscent of cacao beans.",
+                "color": "#3b2c2b"
+            },
+            {
+                "name": "Coffee",
+                "description": "A rich and roasted fragrance similar to freshly brewed coffee.",
+                "color": "#3b2c2b"
+            }
+            ]
+        }
+            ]
+        },
+        {
+            "name": "Taste",
+            "description": "Taste testing is a sensory evaluation focused on identifying and classifying the flavors present in a sample, such as food or beverages. During this test, characteristics such as sweetness, acidity, bitterness, saltiness and umami are analyzed, as well as their combinations and persistence on the palate, with the objective of understanding and describing the taste profile of the product.",
+            "color": "#ffffff",
+            "children": [
+                {
+                    "name": "Basic",
+                    "description": "The basic taste evaluation focuses on identifying the five fundamental tastes: sweet, salty, sour, bitter and umami. This test analyzes the intensity, balance and presence of these flavors in the sample, providing key information about their taste profile and their impact on the palate.",
+                    "color": "#384e36",
+                    "children": [
+                        {
+                            "name": "Sourness",
+                            "description": "Sour taste is related to foods such as lemon, vinegar or yogurt. It is perceived when acids, such as citric acid or acetic acid, are present.",
+                            "color": "#384e36",
+                            "children": [
+                                {
+                                    "name": 1,
+                                    "description": "The flavor is barely perceptible.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 2,
+                                    "description": "The flavor is light and does not dominate the overall profile.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 3,
+                                    "description": "The flavor is clearly identifiable but balanced with other flavors.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 4,
+                                    "description": "The flavor begins to stand out from the others and is predominant.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 5,
+                                    "description": "The flavor is extremely strong and completely dominates the flavor profile.",
+                                    "color":"#384e36"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Saltiness",
+                            "description": "This flavor is perceived when salts are present, mainly sodium chloride (table salt). It is essential to improve the overall flavor of food.",
+                            "color": "#384e36",
+                            "children": [
+                                {
+                                    "name": 1,
+                                    "description": "The flavor is barely perceptible.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 2,
+                                    "description": "The flavor is light and does not dominate the overall profile.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 3,
+                                    "description": "The flavor is clearly identifiable but balanced with other flavors.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 4,
+                                    "description": "The flavor begins to stand out from the others and is predominant.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 5,
+                                    "description": "The flavor is extremely strong and completely dominates the flavor profile.",
+                                    "color":"#384e36"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Sweetness",
+                            "description": "Sweetness is perceived when sugars or sweeteners are present. It is a pleasant taste that is usually associated with desserts and comfort foods.",
+                            "color": "#384e36",
+                            "children": [
+                                {
+                                    "name": 1,
+                                    "description": "The flavor is barely perceptible.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 2,
+                                    "description": "The flavor is light and does not dominate the overall profile.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 3,
+                                    "description": "The flavor is clearly identifiable but balanced with other flavors.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 4,
+                                    "description": "The flavor begins to stand out from the others and is predominant.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 5,
+                                    "description": "The flavor is extremely strong and completely dominates the flavor profile.",
+                                    "color": "#384e36" 
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Bitterness",
+                            "description": "This flavor is related to compounds such as caffeine or tannins. Although sometimes considered unpleasant, it is appreciated in foods such as coffee and bitter chocolate.",
+                            "color": "#384e36",
+                            "children": [
+                                {
+                                    "name": 1,
+                                    "description": "The flavor is barely perceptible.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 2,
+                                    "description": "The flavor is light and does not dominate the overall profile.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 3,
+                                    "description": "The flavor is clearly identifiable but balanced with other flavors.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 4,
+                                    "description": "The flavor begins to stand out from the others and is predominant.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 5,
+                                    "description": "The flavor is extremely strong and completely dominates the flavor profile.",
+                                    "color":"#384e36"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Umami",
+                            "description": "This flavor, known as “savory” or “delicious”, is associated with foods rich in monosodium glutamate or free amino acids. It is common in protein or fermented foods.",
+                            "color": "#384e36",
+                            "children": [
+                                {
+                                    "name": 1,
+                                    "description": "The flavor is barely perceptible.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 2,
+                                    "description": "The flavor is light and does not dominate the overall profile.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 3,
+                                    "description": "The flavor is clearly identifiable but balanced with other flavors.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 4,
+                                    "description": "The flavor begins to stand out from the others and is predominant.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 5,
+                                    "description": "The flavor is extremely strong and completely dominates the flavor profile.",
+                                    "color":"#384e36"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Mouthfeel",
+                    "description": "Mouthfeel evaluation analyzes the physical properties of the sample, such as texture, viscosity, astringency, creaminess, and effervescence. This analysis complements the perception of flavor by considering how the product feels on the palate, which influences the overall sensory experience.",
+                    "color":"#384e36",
+                    "children": [
+                        {
+                            "name": "Aftertaste",
+                            "color": "#384e36",
+                            "children": [
+                                {
+                                    "name": 1,
+                                    "description": "The flavor is barely perceptible.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 2,
+                                    "description": "The flavor is light and does not dominate the overall profile.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 3,
+                                    "description": "The flavor is clearly identifiable but balanced with other flavors.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 4,
+                                    "description": "The flavor begins to stand out from the others and is predominant.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 5,
+                                    "description": "The flavor is extremely strong and completely dominates the flavor profile.",
+                                    "color": "#384e36" 
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Fullness",
+                            "color": "#384e36",
+                            "children": [
+                                {
+                                    "name": 1,
+                                    "description": "The flavor is barely perceptible.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 2,
+                                    "description": "The flavor is light and does not dominate the overall profile.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 3,
+                                    "description": "The flavor is clearly identifiable but balanced with other flavors.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 4,
+                                    "description": "The flavor begins to stand out from the others and is predominant.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 5,
+                                    "description": "The flavor is extremely strong and completely dominates the flavor profile.",
+                                    "color": "#384e36" 
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Smoothness",
+                            "color": "#384e36",
+                            "children": [
+                                {
+                                    "name": 1,
+                                    "description": "The flavor is barely perceptible.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 2,
+                                    "description": "The flavor is light and does not dominate the overall profile.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 3,
+                                    "description": "The flavor is clearly identifiable but balanced with other flavors.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 4,
+                                    "description": "The flavor begins to stand out from the others and is predominant.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 5,
+                                    "description": "The flavor is extremely strong and completely dominates the flavor profile.",
+                                    "color": "#384e36" 
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Fineness",
+                            "color": "#384e36",
+                            "children": [
+                                {
+                                    "name": 1,
+                                    "description": "The flavor is barely perceptible.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 2,
+                                    "description": "The flavor is light and does not dominate the overall profile.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 3,
+                                    "description": "The flavor is clearly identifiable but balanced with other flavors.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 4,
+                                    "description": "The flavor begins to stand out from the others and is predominant.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 5,
+                                    "description": "The flavor is extremely strong and completely dominates the flavor profile.",
+                                    "color": "#384e36" 
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Purity",
+                            "color": "#384e36",
+                            "children": [
+                                {
+                                    "name": 1,
+                                    "description": "The flavor is barely perceptible.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 2,
+                                    "description": "The flavor is light and does not dominate the overall profile.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 3,
+                                    "description": "The flavor is clearly identifiable but balanced with other flavors.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 4,
+                                    "description": "The flavor begins to stand out from the others and is predominant.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 5,
+                                    "description": "The flavor is extremely strong and completely dominates the flavor profile.",
+                                    "color": "#384e36" 
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Astringency",
+                            "color": "#384e36",
+                            "children": [
+                                 {
+                                    "name": 1,
+                                    "description": "The flavor is barely perceptible.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 2,
+                                    "description": "The flavor is light and does not dominate the overall profile.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 3,
+                                    "description": "The flavor is clearly identifiable but balanced with other flavors.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 4,
+                                    "description": "The flavor begins to stand out from the others and is predominant.",
+                                    "color":"#384e36"
+                                },
+                                {
+                                    "name": 5,
+                                    "description": "The flavor is extremely strong and completely dominates the flavor profile.",
+                                    "color": "#384e36" 
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+          {
+            "name": "Color",
+            "color": "#ffffff",
+            "children": [
+                {
+                    "name": "Green Tea",
+                    "description": "",
+                    "color": "#788d3a",
+                    "children": [
+                        {
+                            "name": "Sencha",
+                            "description": "",
+                            "color": "#a7c159"
+                        },
+                        {
+                            "name": "Tencha - Matcha",
+                            "description": "",
+                            "color": "#bbea2c"
+                        },
+                        {
+                            "name": "Genmaicha",
+                            "description": "",
+                            "color": "#788d3a"
+                        },
+                        {
+                            "name": "Gyokyro",
+                            "description": "",
+                            "color": "#9ece9b"
+                        },
+                        {
+                            "name": "Kabusecha",
+                            "description": "",
+                            "color": "#8a9862"
+                        }
+                    ]
+                },
+                {
+                    "name": "Houji",
+                    "description": "",
+                    "color": "#cfa239"
+                },
+                {
+                    "name": "Oolong",
+                    "description": "",
+                    "color": "#cfa239"
+                },
+                {
+                    "name": "Hojicha",
+                    "description": "",
+                    "color": "#735613"
+                },
+                {
+                    "name": "Black Tea",
+                    "description": "",
+                    "color": "#b7431f"
+                },
+                {
+                    "name": "Goishicha",
+                    "description": "",
+                    "color": "#3b2c2b"
+                },
+                {
+                    "name": "Yamacha",
+                    "description": "",
+                    "color": "#3b2c2b"
+                }
+            ]
+        }
+    ]
+}
