@@ -97,7 +97,7 @@ function createFlavorWheel (options = {}) {
       .on('click', clicked)
 
     parent.append('title')
-      .text('To go back')
+      .text('Go to back')
 
     svg.append('text')
       .style('text-anchor', 'middle')
@@ -106,7 +106,7 @@ function createFlavorWheel (options = {}) {
       .attr('startOffset', '50%')
       .style('font-size', '16px')
       .attr('pointer-events', 'none')
-      .text('Click here to go back')
+      .text('Go to back')
 
     const generateResultsTable = () => {
       const basicFlavor = element.requiredFlavor.basic
