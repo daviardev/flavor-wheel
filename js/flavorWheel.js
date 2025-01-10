@@ -92,21 +92,21 @@ function createFlavorWheel (options = {}) {
     const parent = svg.append('circle')
       .datum(partition)
       .attr('r', arcs.radius)
-      .attr('fill', 'black')
+      .attr('fill', 'transparent')
       .attr('pointer-events', 'all')
       .on('click', clicked)
 
     parent.append('title')
-      .text('Go to back')
+      .text('Teaismm')
 
-    svg.append('text')
-      .style('text-anchor', 'middle')
-      .style('color', 'white')
+    svg.append('image')
+      .attr('xlink:href', '/logo.svg')
+      .attr('x', -196.9)
+      .attr('y', -190)
+      .attr('width', 400)
+      .attr('height', 400)
       .style('cursor', 'pointer')
-      .attr('startOffset', '50%')
-      .style('font-size', '16px')
       .attr('pointer-events', 'none')
-      .text('Go to back')
 
     const generateResultsTable = () => {
       const basicFlavor = element.requiredFlavor.basic
