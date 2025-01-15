@@ -82,7 +82,6 @@ body {
   background-color: #1a1a1a;
   border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 768px) {
     flex-basis: 100%;
@@ -102,6 +101,11 @@ body {
   border-radius: 50%;
 }
 
+#counterNameTest, #counterNotes {
+  font-size: .8rem;
+  color: #cecece;
+}
+
 .form-group {
   margin-bottom: 20px;
 }
@@ -114,20 +118,26 @@ label {
 
 input[type="text"],
 textarea {
-  width: 96%;
+  width: 100%;
+  max-width: 500px;
   padding: 8px;
   border: 1px solid #333;
   border-radius: 4px;
   background-color: #222;
   color: #fff;
   resize: none;
-  field-sizing: content;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .star {
   cursor: pointer;
   color: #444;
   font-size: 24px;
+
+  &:hover {
+    color: #c2b153;
+  }
 
   &.active {
     color: #ffd700;
