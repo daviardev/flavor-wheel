@@ -108,17 +108,148 @@ function createFlavorWheel (options = {}) {
       .style('cursor', 'pointer')
       .attr('pointer-events', 'none')
 
-    const generateResultsTable = () => {
-      const basicFlavor = element.requiredFlavor.basic
-      const mouthfeelFlavor = element.requiredFlavor.mouthfeel
+    const extractPathParts = (path) => {
+      const parts = path.split('/')
+      return {
+        category: parts[2],
+        element: parts.slice(3).join(', ')
+      }
+    }
 
-      const extractPathParts = (path) => {
-        const parts = path.split('/')
-        return {
-          category: parts[2],
-          element: parts.slice(3).join(', ')
+    const wrapText = (ctx, text, x, y, maxWidth, lineHeight) => {
+      const words = text.split(' ')
+      let line = ''
+      for (let i = 0; i < words.length; i++) {
+        const testLine = line + words[i] + ' '
+        const metrics = ctx.measureText(testLine)
+        const testWidth = metrics.width
+        if (testWidth > maxWidth && i > 0) {
+          ctx.fillText(line, x, y)
+          line = words[i] + ' '
+          y += lineHeight
+        } else {
+          line = testLine
         }
       }
+      ctx.fillText(line, x, y)
+    }
+
+    const generateImage = () => {
+      const canvas = document.createElement('canvas')
+      const aromas = JSON.parse(window.localStorage.getItem(element.storage.aroma)) || []
+      const baseHeight = 1400
+      const additionalHeight = 25 * aromas.length
+      canvas.width = 1000
+      canvas.height = baseHeight + additionalHeight
+      const ctx = canvas.getContext('2d')
+
+      ctx.fillStyle = '#f7f7f7'
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+      const testName = ID(element.formGroup.testName).value.trim()
+      if (!testName) {
+        showToast('Please enter a test name before downloading.', 'error')
+        return
+      }
+
+      const color = window.localStorage.getItem(element.storage.color)
+      const colorName = color ? color.split('/').pop() : 'No color selected'
+      const colorHex = getColorHex(colorName)
+      const rating = ID(element.formGroup.inputRate).value
+      const notes = ID(element.formGroup.notes).value
+      const flavors = JSON.parse(window.localStorage.getItem(element.storage.flavor)) || []
+
+      const isJapaneseTea = flavors.some(([category]) => category === 'Astringency')
+
+      const basicFlavorOrder = ['Umami', 'Sourness', 'Saltiness', 'Sweetness', 'Bitterness']
+      const mouthfeelFlavorOrder = isJapaneseTea ? ['Astringency', 'Aftertaste', 'Fullness', 'Smoothness', 'Fineness', 'Purity'] : ['Aftertaste', 'Fullness', 'Smoothness', 'Fineness', 'Purity']
+
+      const basicFlavor = basicFlavorOrder.map(flavor => {
+        const flavorData = flavors.find(([category]) => category === flavor)
+        return flavorData ? parseInt(flavorData[1].split('/').pop()) : 0
+      })
+
+      const mouthfeelFlavor = mouthfeelFlavorOrder.map(flavor => {
+        const flavorData = flavors.find(([category]) => category === flavor)
+        return flavorData ? parseInt(flavorData[1].split('/').pop()) : 0
+      })
+
+      ctx.fillStyle = '#333'
+      ctx.font = 'bold 36px sans-serif'
+      wrapText(ctx, testName, 50, 50, 900, 40)
+
+      ctx.fillStyle = colorHex
+      ctx.fillRect(50, 120, 50, 50)
+      ctx.fillStyle = '#333'
+      ctx.font = '24px sans-serif'
+      ctx.fillText(colorName, 120, 150)
+
+      ctx.fillText('Rating:', 50, 230)
+      for (let i = 0; i < 5; i++) {
+        ctx.fillText(i < rating ? '⭐' : '', 150 + (i * 30), 230)
+      }
+
+      ctx.fillStyle = '#333'
+      ctx.font = '24px sans-serif'
+      ctx.fillText('Notes:', 50, 290)
+      ctx.font = '20px sans-serif'
+      wrapText(ctx, notes, 50, 320, 500, 30)
+
+      ctx.fillStyle = '#000'
+      ctx.fillText('Basic Flavor Intensity:', 600, 150)
+      basicFlavorOrder.forEach((label, index) => {
+        ctx.fillStyle = '#000'
+        ctx.fillText(label, 600, 200 + index * 30)
+        for (let i = 0; i < 5; i++) {
+          ctx.fillStyle = i < basicFlavor[index] ? colorHex : '#e0e0e0'
+          ctx.fillRect(800 + (i * 30), 185 + index * 30, 20, 20)
+        }
+      })
+
+      ctx.fillStyle = '#000'
+      ctx.fillText('Mouthfeel Intensity:', 600, 400)
+      mouthfeelFlavorOrder.forEach((label, index) => {
+        ctx.fillStyle = '#000'
+        ctx.fillText(label, 600, 450 + index * 30)
+        for (let i = 0; i < 5; i++) {
+          ctx.fillStyle = i < mouthfeelFlavor[index] ? colorHex : '#e0e0e0'
+          ctx.fillRect(800 + (i * 30), 435 + index * 30, 20, 20)
+        }
+      })
+
+      ctx.fillStyle = '#000'
+      ctx.font = '24px sans-serif'
+      ctx.fillText('Aromas:', 600, 650)
+      ctx.font = '20px sans-serif'
+      aromas.forEach((path, index) => {
+        const { category, element } = extractPathParts(path)
+        ctx.fillText(`- ${category}: ${element}`, 600, 680 + index * 30)
+      })
+
+      const imgData = canvas.toDataURL('image/png')
+      const link = document.createElement('a')
+      link.href = imgData
+      link.download = `${testName}.png`
+      link.click()
+    }
+
+    const generateResultsTable = () => {
+      const flavors = JSON.parse(window.localStorage.getItem(element.storage.flavor)) || []
+
+      const isJapaneseTea = flavors.some(([category]) => category === 'Astringency')
+
+      const basicFlavorOrder = ['Umami', 'Sourness', 'Saltiness', 'Sweetness', 'Bitterness']
+      const mouthfeelFlavorOrder = isJapaneseTea ? ['Astringency', 'Aftertaste', 'Fullness', 'Smoothness', 'Fineness', 'Purity'] : ['Aftertaste', 'Fullness', 'Smoothness', 'Fineness', 'Purity']
+
+      const basicFlavor = basicFlavorOrder.map(flavor => {
+        const flavorData = flavors.find(([category]) => category === flavor)
+        return flavorData ? parseInt(flavorData[1].split('/').pop()) : 0
+      })
+
+      const mouthfeelFlavor = mouthfeelFlavorOrder.map(flavor => {
+        const flavorData = flavors.find(([category]) => category === flavor)
+        return flavorData ? parseInt(flavorData[1].split('/').pop()) : 0
+      })
 
       const results = `
     <div class="sections">
@@ -129,8 +260,9 @@ function createFlavorWheel (options = {}) {
           <span>Color Reference</span>
         </div>
         <div class="form-group">
-          <label for="${element.formGroup.testName}">Test Name</label>
-          <input type="text" id="${element.formGroup.testName}" placeholder="Enter test name">
+          <label for="${element.formGroup.testName}">Name your test</label>
+          <input type="text" id="${element.formGroup.testName}" placeholder="Example: Black tea sensory test..." maxlength="50">
+          <span id="counterNameTest">0/50</span>
         </div>
         <div class="form-group">
           <label>Rating</label>
@@ -145,8 +277,14 @@ function createFlavorWheel (options = {}) {
           <input type="hidden" id="${element.formGroup.inputRate}" name="rating" value="0">
         </div>
         <div class="form-group">
-          <label for="${element.formGroup.notes}">Notes</label>
-          <textarea id="${element.formGroup.notes}" placeholder="Add your tasting notes..."></textarea>
+          <label for="${element.formGroup.notes}">Describe your feelings</label>
+          <textarea
+            id="${element.formGroup.notes}"
+            placeholder="Describe the aromas, flavors, and overall impressions of the tea."
+            maxlength="300"
+            rows="7"
+          ></textarea>
+          <span id="counterNotes">0/300</span>
         </div>
         <div class="button-group">
           <button class="button" id="${element.formGroup.download}">Download</button>
@@ -158,8 +296,8 @@ function createFlavorWheel (options = {}) {
       <div class="tea-profile">
         <div class="tabs">
           <button class="tab-btn ${element.tabButton} active" data-tab="aroma">Aroma</button>
-          <button class="tab-btn ${element.tabButton}" data-tab="basic">Basic Flavor</button>
-          <button class="tab-btn ${element.tabButton}" data-tab="mouthfeel">Mouthfeel</button>
+          <button class="tab-btn ${element.tabButton}" data-tab="basic">Taste</button>
+          <button class="tab-btn ${element.tabButton}" data-tab="mouthfeel">Mouthfeel taste</button>
         </div>
         <div class="tab-content ${element.tabContent} active" id="aromaContent">
           <div class="aroma-grid">
@@ -188,49 +326,58 @@ function createFlavorWheel (options = {}) {
           </div>
         </div>
         <div class="tab-content ${element.tabContent}" id="basicContent">
-          <h2>Basic Flavor Profile</h2>
           <div>
-            ${Array.from(flavor.entries())
-              .filter(([category]) => basicFlavor.includes(category))
-              .map(([category, selection]) => {
-                const intensity = parseInt(selection.split('/').pop())
-                return `
-                  <div>
-                    <label>${category}</label>
-                    <div class="intensity-bar">
-                      ${Array(5).fill().map((_, i) => `
-                        <div class="intensity-segment ${i < intensity ? 'active' : ''}"></div>
-                      `).join('')}
-                    </div>
+            ${basicFlavorOrder.map((category, index) => {
+              const intensity = basicFlavor[index]
+              return `
+                <div>
+                  <label>${category}</label>
+                  <div class="intensity-bar">
+                    ${Array(5).fill().map((_, i) => `
+                      <div class="intensity-segment ${i < intensity ? 'active' : ''}"></div>
+                    `).join('')}
                   </div>
-                `
-              }).join('')}
+                </div>
+              `
+            }).join('')}
           </div>
         </div>
         <div class="tab-content ${element.tabContent}" id="mouthfeelContent">
-          <h2>Mouthfeel Profile</h2>
           <div id="mouthfeelResults">
-            ${Array.from(flavor.entries())
-              .filter(([category]) => mouthfeelFlavor.includes(category))
-              .map(([category, selection]) => {
-                const intensity = parseInt(selection.split('/').pop())
-                return `
-                  <div>
-                    <label>${category}</label>
-                    <div class="intensity-bar">
-                      ${Array(5).fill().map((_, i) => `
-                        <div class="intensity-segment ${i < intensity ? 'active' : ''}"></div>
-                      `).join('')}
-                    </div>
+          ${mouthfeelFlavorOrder.map((category, index) => {
+              const intensity = mouthfeelFlavor[index]
+              return `
+                <div>
+                  <label>${category}</label>
+                  <div class="intensity-bar">
+                    ${Array(5).fill().map((_, i) => `
+                      <div class="intensity-segment ${i < intensity ? 'active' : ''}"></div>
+                    `).join('')}
                   </div>
-                `
-              }).join('')}
+                </div>
+              `
+            }).join('')}
           </div>
         </div>
       </div>
     </div>
   `
       contentResult.innerHTML = results
+
+      const inputName = ID('counterNameTest')
+      const inputNotes = ID('counterNotes')
+
+      const updateCounter = (inputElement, counterElement, maxLenght) => {
+        inputElement.addEventListener('input', () => {
+          const remaining = inputElement.value.length
+          counterElement.textContent = `${remaining}/${maxLenght}`
+
+          if (remaining === maxLenght) return showToast('You have reached the maximum number of characters.', 'error')
+        })
+      }
+
+      updateCounter(ID(element.formGroup.testName), inputName, 50)
+      updateCounter(ID(element.formGroup.notes), inputNotes, 300)
 
       const tabBtns = $$(`.${element.tabButton}`)
       const tabContents = $$(`.${element.tabContent}`)
@@ -263,7 +410,7 @@ function createFlavorWheel (options = {}) {
         })
       }
 
-      ID(element.formGroup.download).addEventListener('click', saveAsCSV)
+      ID(element.formGroup.download).addEventListener('click', generateImage)
       ID(element.formGroup.share).addEventListener('click', shareViaEmail)
       ID(element.formGroup.returnTest).addEventListener('click', returnToTest)
       ID(element.formGroup.finish).addEventListener('click', finishAndResetTest)
@@ -430,39 +577,6 @@ function createFlavorWheel (options = {}) {
     console.error('Fetch error data', err)
   })
 
-  function saveAsCSV () {
-    const testName = ID(element.formGroup.testName).value.trim()
-    if (!testName) {
-      showToast('Please enter a test name before downloading.', 'error')
-      return
-    }
-
-    let csvContent = 'data:text/csv;charset=utf-8,'
-    csvContent += 'Category - Selection'
-
-    aroma.forEach(path => {
-      const parts = path.split('/')
-      csvContent += `\n${parts[1]}: ${parts.slice(2).join(', ')}\n`
-    })
-
-    flavor.forEach((selection, category) => { csvContent += `\n${category}: ${selection.split('/').pop()}\n` })
-
-    if (color) { csvContent += `\nColor: ${color.split('/').pop()}\n` }
-
-    csvContent += `\nTest Name: ${testName}\n`
-    csvContent += `Rating: ${ID(element.formGroup.inputRate).value} stars\n`
-    csvContent += `Notes: ${ID(element.formGroup.notes).value}\n`
-
-    const encodedUri = encodeURI(csvContent)
-    const link = document.createElement('a')
-
-    link.setAttribute('href', encodedUri)
-    link.setAttribute('download', `${testName}.csv`)
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-  }
-
   function shareViaEmail () {
     const testName = ID(element.formGroup.testName).value.trim()
     if (!testName) {
@@ -473,10 +587,10 @@ function createFlavorWheel (options = {}) {
     const rating = ID(element.formGroup.inputRate).value
     const notes = ID(element.formGroup.notes).value
 
-    const emailBody = `
-  Hey! 👋
+    const emailBody = `Hey! 👋
 
       I'm sharing with you the results of my aroma and taste test. I hope you like it and can see how i did in all this.
+
       Here are the details:
 
       NAME OF TEST ${testName}
