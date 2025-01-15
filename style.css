@@ -237,3 +237,31 @@ textarea {
   margin: 0 auto;
   position: relative;
 }
+
+#progress-container {
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  margin: 20px 0;
+  position: relative;
+}
+
+#progress-bar {
+  width: 0;
+  height: 20px;
+  background-color: #4caf50;
+  border-radius: 8px;
+  transition: width .3s;
+}
+
+#progress-text {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 0;
+  left: 0;
+  height: 20px;
+  line-height: 20px;
+  font-weight: bold;
+  color: #fff;
+}

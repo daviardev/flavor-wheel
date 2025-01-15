@@ -116,6 +116,19 @@ function createFlavorWheel (options = {}) {
       }
     }
 
+    function loadProgressBar () {
+      const progressData = JSON.parse(window.localStorage.getItem('progress'))
+      if (progressData) {
+        const { completedSteps, totalSteps } = progressData
+        const progressPercentage = (completedSteps / totalSteps) * 100
+        const progressBar = ID('progress-bar')
+        const progressText = ID('progress-text')
+
+        progressBar.style.width = `${progressPercentage}%`
+        progressText.textContent = `${completedSteps} / ${totalSteps} steps completed`
+      }
+    }
+
     const wrapText = (ctx, text, x, y, maxWidth, lineHeight) => {
       const words = text.split(' ')
       let line = ''
@@ -245,6 +258,8 @@ function createFlavorWheel (options = {}) {
       ctx.font = '20px sans-serif'
       wrapText(ctx, notes, 50, 320, 500, 30)
     }
+
+    loadProgressBar()
 
     const generateResultsTable = () => {
       const flavors = JSON.parse(window.localStorage.getItem(element.storage.flavor)) || []
@@ -435,6 +450,24 @@ function createFlavorWheel (options = {}) {
       return selectedColor ? selectedColor.color : '#FFFFFF'
     }
 
+    function updateProgress () {
+      const totalSteps = 3
+      let completedSteps = 0
+
+      if (color !== null) completedSteps++
+      if (hasAromaSelection()) completedSteps++
+
+      const requiredFlavor = [...element.requiredFlavor.basic, ...element.requiredFlavor.mouthfeel]
+      if (requiredFlavor.every(category => flavor.has(category))) completedSteps++
+
+      const progressPercentage = (completedSteps / totalSteps) * 100
+      const progressBar = ID('progress-bar')
+      const progressText = ID('progress-text')
+
+      progressBar.style.width = `${progressPercentage}%`
+      progressText.textContent = `${completedSteps} of ${totalSteps} steps completed`
+    }
+
     function toggleSelection (event, d) {
       const fullPath = d.ancestors().map(d => d.data.name).reverse().join('/')
       const isTaste = d.ancestors().some(node => node.data.name === 'Taste')
@@ -468,6 +501,24 @@ function createFlavorWheel (options = {}) {
       }
 
       updateVisuals()
+      updateProgressBar()
+    }
+
+    function updateProgressBar () {
+      const totalSteps = 3
+      let completedSteps = 0
+
+      if (color !== null) completedSteps++
+      if (hasAromaSelection()) completedSteps++
+      const requiredFlavor = [...element.requiredFlavor.basic, ...element.requiredFlavor.mouthfeel]
+      if (requiredFlavor.every(category => flavor.has(category))) completedSteps++
+
+      const progressPercentage = (completedSteps / totalSteps) * 100
+      const progressBar = ID('progress-bar')
+      const progressText = ID('progress-text')
+
+      progressBar.style.width = `${progressPercentage}%`
+      progressText.textContent = `${completedSteps} / ${totalSteps} steps completed`
     }
 
     function updateVisuals () {
@@ -560,14 +611,18 @@ function createFlavorWheel (options = {}) {
       chartSvg.style.display = 'none'
       ID('content-results').style.display = 'block'
       generateResultsTable()
+      updateProgress()
     }
 
     function returnToTest () {
       ID('content-results').style.display = 'none'
       chartSvg.style.display = 'block'
+
+      updateProgress()
     }
 
     function finishAndResetTest () {
+      window.localStorage.removeItem('progress')
       window.localStorage.removeItem(element.storage.aroma)
       window.localStorage.removeItem(element.storage.flavor)
       window.localStorage.removeItem(element.storage.color)
@@ -581,6 +636,8 @@ function createFlavorWheel (options = {}) {
 
       updateVisuals()
       showToast('Test finished and reset. You can start a new test now.', 'success')
+
+      updateProgress()
     }
 
     function shareViaEmail () {
