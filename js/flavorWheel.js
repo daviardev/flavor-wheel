@@ -230,7 +230,7 @@ function createFlavorWheel (options = {}) {
 
       img.src = '/logo-black.svg'
       img.onload = () => {
-        ctx.drawImage(img, 50, 350 + (notes.split('\n').length * 30), 900, 900)
+        ctx.drawImage(img, 30, 350 + (notes.split('\n').length * 30), 900, 900)
 
         const imgData = canvas.toDataURL('image/png')
         const link = document.createElement('a')
@@ -583,24 +583,17 @@ function createFlavorWheel (options = {}) {
       showToast('Test finished and reset. You can start a new test now.', 'success')
     }
 
-    updateVisuals()
+    function shareViaEmail () {
+      const testName = ID(element.formGroup.testName).value.trim()
+      if (!testName) {
+        showToast('Please enter a test name before sharing.', 'error')
+        return
+      }
 
-    return svg.node()
-  }).catch(err => {
-    console.error('Fetch error data', err)
-  })
+      const rating = ID(element.formGroup.inputRate).value
+      const notes = ID(element.formGroup.notes).value
 
-  function shareViaEmail () {
-    const testName = ID(element.formGroup.testName).value.trim()
-    if (!testName) {
-      showToast('Please enter a test name before sharing.', 'error')
-      return
-    }
-
-    const rating = ID(element.formGroup.inputRate).value
-    const notes = ID(element.formGroup.notes).value
-
-    const emailBody = `Hey! 👋
+      const emailBody = `Hey! 👋
 
       I'm sharing with you the results of my aroma and taste test. I hope you like it and can see how i did in all this.
 
@@ -635,9 +628,16 @@ function createFlavorWheel (options = {}) {
       NOTES ${notes}
 `
 
-    const mailtoLink = `mailto:?subject=${encodeURIComponent(testName)}&body=${encodeURIComponent(emailBody)}`
-    window.location.href = mailtoLink
-  }
+      const mailtoLink = `mailto:?subject=${encodeURIComponent(testName)}&body=${encodeURIComponent(emailBody)}`
+      window.location.href = mailtoLink
+    }
+
+    updateVisuals()
+
+    return svg.node()
+  }).catch(err => {
+    console.error('Fetch error data', err)
+  })
 }
 
 export default createFlavorWheel
