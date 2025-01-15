@@ -100,7 +100,7 @@ function createFlavorWheel (options = {}) {
       .text('Teaismm')
 
     svg.append('image')
-      .attr('xlink:href', '/logo.svg')
+      .attr('xlink:href', '/logo-white.svg')
       .attr('x', -196.9)
       .attr('y', -190)
       .attr('width', 400)
@@ -226,11 +226,24 @@ function createFlavorWheel (options = {}) {
         ctx.fillText(`- ${category}: ${element}`, 600, 680 + index * 30)
       })
 
-      const imgData = canvas.toDataURL('image/png')
-      const link = document.createElement('a')
-      link.href = imgData
-      link.download = `${testName}.png`
-      link.click()
+      const img = new window.Image()
+
+      img.src = '/logo-black.svg'
+      img.onload = () => {
+        ctx.drawImage(img, 50, 350 + (notes.split('\n').length * 30), 900, 900)
+
+        const imgData = canvas.toDataURL('image/png')
+        const link = document.createElement('a')
+        link.href = imgData
+        link.download = `${testName}.png`
+        link.click()
+      }
+
+      ctx.fillStyle = '#333'
+      ctx.font = '24px sans-serif'
+      ctx.fillText('Notes:', 50, 290)
+      ctx.font = '20px sans-serif'
+      wrapText(ctx, notes, 50, 320, 500, 30)
     }
 
     const generateResultsTable = () => {
