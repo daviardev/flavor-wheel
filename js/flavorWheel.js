@@ -519,6 +519,8 @@ function createFlavorWheel (options = {}) {
 
       progressBar.style.width = `${progressPercentage}%`
       progressText.textContent = `${completedSteps} / ${totalSteps} steps completed`
+
+      window.localStorage.setItem('progress', JSON.stringify({ completedSteps, totalSteps }))
     }
 
     function updateVisuals () {
