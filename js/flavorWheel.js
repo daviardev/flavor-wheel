@@ -11,8 +11,8 @@ import { selectors } from '../utils/selectors.js'
 function createFlavorWheel (options = {}) {
   const element = selectors(options)
 
-  const aroma = new Set(JSON.parse(window.localStorage.getItem(element.storage.aroma)) || [])
-  const flavor = new Map(JSON.parse(window.localStorage.getItem(element.storage.flavor)) || [])
+  let aroma = new Set(JSON.parse(window.localStorage.getItem(element.storage.aroma)) || [])
+  let flavor = new Map(JSON.parse(window.localStorage.getItem(element.storage.flavor)) || [])
 
   let color = window.localStorage.getItem(element.storage.color) || null
 
@@ -117,7 +117,7 @@ function createFlavorWheel (options = {}) {
     }
 
     function loadProgressBar () {
-      const progressData = JSON.parse(window.localStorage.getItem('progress'))
+      const progressData = JSON.parse(window.localStorage.getItem(element.storage?.progress))
       if (progressData) {
         const { completedSteps, totalSteps } = progressData
         const progressPercentage = (completedSteps / totalSteps) * 100
@@ -448,6 +448,27 @@ function createFlavorWheel (options = {}) {
       return selectedColor ? selectedColor.color : '#FFFFFF'
     }
 
+    function loadSelections () {
+      const storedAroma = JSON.parse(window.localStorage.getItem(element.storage.aroma))
+      const storedFlavor = JSON.parse(window.localStorage.getItem(element.storage.flavor))
+      const storedColor = window.localStorage.getItem(element.storage.color)
+
+      if (storedAroma) {
+        aroma = new Set(storedAroma)
+      }
+
+      if (storedFlavor) {
+        flavor = new Map(storedFlavor)
+      }
+
+      if (storedColor) {
+        color = storedColor
+      }
+
+      updateVisuals()
+      updateProgress()
+    }
+
     function updateProgress () {
       const totalSteps = 3
       let completedSteps = 0
@@ -458,12 +479,10 @@ function createFlavorWheel (options = {}) {
       const requiredFlavor = [...element.requiredFlavor.basic, ...element.requiredFlavor.mouthfeel]
       if (requiredFlavor.every(category => flavor.has(category))) completedSteps++
 
-      const progressPercentage = (completedSteps / totalSteps) * 100
-      const progressBar = ID('progress-bar')
-      const progressText = ID('progress-text')
+      const stepsIndicator = ID('steps-indicator')
+      stepsIndicator.textContent = `${completedSteps} / ${totalSteps} steps completed`
 
-      progressBar.style.width = `${progressPercentage}%`
-      progressText.textContent = `${completedSteps} of ${totalSteps} steps completed`
+      window.localStorage.setItem(element.storage?.progress, JSON.stringify({ completedSteps, totalSteps }))
     }
 
     function toggleSelection (event, d) {
@@ -499,26 +518,7 @@ function createFlavorWheel (options = {}) {
       }
 
       updateVisuals()
-      updateProgressBar()
-    }
-
-    function updateProgressBar () {
-      const totalSteps = 3
-      let completedSteps = 0
-
-      if (color !== null) completedSteps++
-      if (hasAromaSelection()) completedSteps++
-      const requiredFlavor = [...element.requiredFlavor.basic, ...element.requiredFlavor.mouthfeel]
-      if (requiredFlavor.every(category => flavor.has(category))) completedSteps++
-
-      const progressPercentage = (completedSteps / totalSteps) * 100
-      const progressBar = ID('progress-bar')
-      const progressText = ID('progress-text')
-
-      progressBar.style.width = `${progressPercentage}%`
-      progressText.textContent = `${completedSteps} / ${totalSteps} steps completed`
-
-      window.localStorage.setItem('progress', JSON.stringify({ completedSteps, totalSteps }))
+      updateProgress()
     }
 
     function updateVisuals () {
@@ -610,19 +610,21 @@ function createFlavorWheel (options = {}) {
 
       chartSvg.style.display = 'none'
       ID('content-results').style.display = 'block'
+      ID('steps-indicator').style.display = 'none'
       generateResultsTable()
       updateProgress()
     }
 
     function returnToTest () {
       ID('content-results').style.display = 'none'
+      ID('steps-indicator').style.display = 'block'
       chartSvg.style.display = 'block'
 
       updateProgress()
     }
 
     function finishAndResetTest () {
-      window.localStorage.removeItem('progress')
+      window.localStorage.removeItem(element.storage.progress)
       window.localStorage.removeItem(element.storage.aroma)
       window.localStorage.removeItem(element.storage.flavor)
       window.localStorage.removeItem(element.storage.color)
@@ -632,12 +634,13 @@ function createFlavorWheel (options = {}) {
       color = null
 
       ID('content-results').style.display = 'none'
+      ID('steps-indicator').style.display = 'block'
       chartSvg.style.display = 'block'
 
       updateVisuals()
-      showToast('Test finished and reset. You can start a new test now.', 'success')
-
       updateProgress()
+
+      showToast('Test finished and reset. You can start a new test now.', 'success')
     }
 
     function shareViaEmail () {
@@ -691,6 +694,7 @@ function createFlavorWheel (options = {}) {
 
     loadProgressBar()
     updateVisuals()
+    loadSelections()
 
     return svg.node()
   }).catch(err => {

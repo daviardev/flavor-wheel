@@ -5,12 +5,13 @@ import createFlavorWheel from './js/flavorWheel'
 createFlavorWheel({
   chart: {
     svg: 'chart',
-    dataUrl: '/data/taiwan-tea.json'
+    dataUrl: '/data/japanese-tea.json'
   },
   storage: {
     aroma: 'Aroma',
     flavor: 'Flavors',
-    color: 'Color'
+    color: 'Color',
+    storage: 'progress'
   },
   requiredFlavor: {
     basic: ['Sourness', 'Saltiness', 'Sweetness', 'Bitterness', 'Umami'],

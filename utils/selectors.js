@@ -7,7 +7,8 @@ export const selectors = (options = {}) => {
     storage: {
       aroma: options.storage?.aroma,
       flavor: options.storage?.flavor,
-      color: options.storage?.color
+      color: options.storage?.color,
+      progress: options.storage?.progress
     },
     requiredFlavor: {
       basic: options.requiredFlavor?.basic,
