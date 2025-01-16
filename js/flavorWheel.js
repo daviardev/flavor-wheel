@@ -259,8 +259,6 @@ function createFlavorWheel (options = {}) {
       wrapText(ctx, notes, 50, 320, 500, 30)
     }
 
-    loadProgressBar()
-
     const generateResultsTable = () => {
       const flavors = JSON.parse(window.localStorage.getItem(element.storage.flavor)) || []
 
@@ -691,6 +689,7 @@ function createFlavorWheel (options = {}) {
       window.location.href = mailtoLink
     }
 
+    loadProgressBar()
     updateVisuals()
 
     return svg.node()
