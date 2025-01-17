@@ -5,17 +5,17 @@ import createFlavorWheel from './js/flavorWheel'
 createFlavorWheel({
   chart: {
     svg: 'chart',
-    dataUrl: '/data/japanese-tea.json'
+    dataUrl: 'https://153532a4-d3a7-4635-b8df-87033232e2df.usrfiles.com/ugd/153532_5423f82e818a43a0a96d82a0c37568db.json'
   },
   storage: {
-    aroma: 'Aroma Japan',
-    flavor: 'Flavors Japan',
-    color: 'Color Japan',
-    storage: 'progress Japan'
+    aroma: 'Aroma Taiwan',
+    flavor: 'Flavors Taiwan',
+    color: 'Color Taiwan',
+    storage: 'progress Taiwan'
   },
   requiredFlavor: {
     basic: ['Sourness', 'Saltiness', 'Sweetness', 'Bitterness', 'Umami'],
-    mouthfeel: ['Astringency', 'Aftertaste', 'Fullness', 'Smoothness', 'Fineness', 'Purity']
+    mouthfeel: ['Aftertaste', 'Fullness', 'Smoothness', 'Fineness', 'Purity']
   },
   formGroup: {
     testName: 'testName',
