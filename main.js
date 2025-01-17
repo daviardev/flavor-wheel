@@ -8,14 +8,14 @@ createFlavorWheel({
     dataUrl: '/data/japanese-tea.json'
   },
   storage: {
-    aroma: 'Aroma',
-    flavor: 'Flavors',
-    color: 'Color',
-    storage: 'progress'
+    aroma: 'Aroma Japan',
+    flavor: 'Flavors Japan',
+    color: 'Color Japan',
+    storage: 'progress Japan'
   },
   requiredFlavor: {
     basic: ['Sourness', 'Saltiness', 'Sweetness', 'Bitterness', 'Umami'],
-    mouthfeel: ['Aftertaste', 'Fullness', 'Smoothness', 'Fineness', 'Purity']
+    mouthfeel: ['Astringency', 'Aftertaste', 'Fullness', 'Smoothness', 'Fineness', 'Purity']
   },
   formGroup: {
     testName: 'testName',
