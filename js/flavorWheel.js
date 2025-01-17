@@ -120,11 +120,8 @@ function createFlavorWheel (options = {}) {
       const progressData = JSON.parse(window.localStorage.getItem(element.storage?.progress))
       if (progressData) {
         const { completedSteps, totalSteps } = progressData
-        const progressPercentage = (completedSteps / totalSteps) * 100
-        const progressBar = ID('progress-bar')
         const progressText = ID('progress-text')
 
-        progressBar.style.width = `${progressPercentage}%`
         progressText.textContent = `${completedSteps} / ${totalSteps} steps completed`
       }
     }
@@ -287,7 +284,7 @@ function createFlavorWheel (options = {}) {
         </div>
         <div class="form-group">
           <label for="${element.formGroup.testName}">Name your test</label>
-          <input type="text" id="${element.formGroup.testName}" placeholder="Example: Black tea sensory test..." maxlength="50">
+          <input class="input" type="text" id="${element.formGroup.testName}" placeholder="Example: Black tea sensory test..." maxlength="50">
           <span id="counterNameTest">0/50</span>
         </div>
         <div class="form-group">
