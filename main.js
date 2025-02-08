@@ -5,17 +5,17 @@ import createFlavorWheel from './js/flavorWheel'
 createFlavorWheel({
   chart: {
     svg: 'chart',
-    dataUrl: 'https://153532a4-d3a7-4635-b8df-87033232e2df.usrfiles.com/ugd/153532_5423f82e818a43a0a96d82a0c37568db.json'
+    dataUrl: 'path/data/json'
   },
   storage: {
-    aroma: 'Aroma Taiwan',
-    flavor: 'Flavors Taiwan',
-    color: 'Color Taiwan',
-    storage: 'progress Taiwan'
+    aroma: 'Aromas',
+    flavor: 'Flavors',
+    color: 'Color',
+    storage: 'Storage'
   },
   requiredFlavor: {
-    basic: ['Sourness', 'Saltiness', 'Sweetness', 'Bitterness', 'Umami'],
-    mouthfeel: ['Aftertaste', 'Fullness', 'Smoothness', 'Fineness', 'Purity']
+    basic: [''],
+    mouthfeel: ['']
   },
   formGroup: {
     testName: 'testName',
